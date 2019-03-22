@@ -11,7 +11,7 @@ class NewCardForm extends Component {
             type="text"
             placeholder="New task"
           />
-          <button type="submit">
+          <button type="submit" id="create-button">
             Create
           </button>
         </form>
