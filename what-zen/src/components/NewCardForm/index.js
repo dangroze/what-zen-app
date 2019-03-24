@@ -8,6 +8,7 @@ class NewCardForm extends Component {
     this.state = {
       title: '',
       body: '',
+      // key: '',
     }
   }
 
@@ -21,29 +22,32 @@ class NewCardForm extends Component {
     let database = this.props.db.database().ref('/cards');
     database.push({
       title: this.state.title,
-      body: this.state.body
+      body: this.state.body,
+      // key: db.database()
     });
     this.setState({
       title: '',
-      body: '', 
+      body: '',
+
     });
   }
 
   render() {
     return (
       <div className="NewCardForm">
-        Do you have a new task?
         <form action="#" onSubmit={this.addCard} id="SubmitNewTask">
           <div><input
+            required
             className="input"
             name="title"
             id="newTaskTitleField"
             onChange={this.updateInput}
             type="text"
-            placeholder="Title"
+            placeholder="Enter a new task here"
             value={this.state.title}
           /></div>
-          <div><textarea
+          {/* <div><textarea
+            required
             className="textarea"
             name="body"
             id="newTaskBodyField"
@@ -52,7 +56,7 @@ class NewCardForm extends Component {
             placeholder="Details"
             value={this.state.body}>
           </textarea></div>
-          <input type="submit" value="Create task" />
+          <input type="submit" value="Create task" /> */}
         </form>
       </div>
     );
