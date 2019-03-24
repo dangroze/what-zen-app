@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import NewCardForm from '../NewCardForm/index';
+import CardList from '../CardList';
+import NewCardForm from '../NewCardForm';
 import firebase from 'firebase';
 
 class App extends Component {
@@ -8,12 +9,12 @@ class App extends Component {
     super(props);
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyCiisiaYLNmLBNTW941SSVAYmqS3YY9CNU",
-      authDomain: "what-zen-app.firebaseapp.com",
-      databaseURL: "https://what-zen-app.firebaseio.com",
-      projectId: "what-zen-app",
-      storageBucket: "what-zen-app.appspot.com",
-      messagingSenderId: "914887048016"
+      apiKey: "AIzaSyAXfFtVxxVYWlcgXctJmLU2Rn1dA5lL8uI",
+      authDomain: "what-zen.firebaseapp.com",
+      databaseURL: "https://what-zen.firebaseio.com",
+      projectId: "what-zen",
+      storageBucket: "what-zen.appspot.com",
+      messagingSenderId: "696182130594"
     };
     firebase.initializeApp(config);
   }
@@ -21,8 +22,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        Hello world
-        <NewCardForm db={firebase}/>
+      Welcome to your board
+        <div className="columns">
+          <div className="column is-3"></div>
+          <div className="column is-6">
+              <CardList db={firebase}/></div>
+        </div>
+        <div className="columns">
+          <div className="column is-3"></div>
+          <div className="column is-6">
+            <NewCardForm db={firebase}/></div>
+        </div>
       </div>
     );
   }

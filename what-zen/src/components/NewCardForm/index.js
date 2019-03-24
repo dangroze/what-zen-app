@@ -3,44 +3,56 @@ import React, { Component } from 'react';
 class NewCardForm extends Component {
   constructor(props) {
     super(props)
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.updateInput = this.updateInput.bind(this);
+    this.addCard = this.addCard.bind(this);
     this.state = {
-      body: ''
+      title: '',
+      body: '',
     }
   }
 
-  onChange(e){
+  updateInput(e){
     e.preventDefault();
-    this.setState({
-      body: e.target.value
-    });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSubmit(e){
+  addCard(e){
     e.preventDefault();
-
-    let database = this.props.db.database().ref('/messages');
-    database.child('newcard').set({
+    let database = this.props.db.database().ref('/cards');
+    database.push({
+      title: this.state.title,
       body: this.state.body
     });
     this.setState({
-      body: ''
+      title: '',
+      body: '', 
     });
   }
 
   render() {
     return (
       <div className="NewCardForm">
-        <form action="#" onSubmit={this.onSubmit}>
-          <input
-            name="body"
-            onChange={this.onChange}
-            // onSubmit={this.onSubmit}
+        Do you have a new task?
+        <form action="#" onSubmit={this.addCard} id="SubmitNewTask">
+          <div><input
+            className="input"
+            name="title"
+            id="newTaskTitleField"
+            onChange={this.updateInput}
             type="text"
-            placeholder="New task"
-            value={this.state.body}
-          />
+            placeholder="Title"
+            value={this.state.title}
+          /></div>
+          <div><textarea
+            className="textarea"
+            name="body"
+            id="newTaskBodyField"
+            onChange={this.updateInput}
+            type="textarea"
+            placeholder="Details"
+            value={this.state.body}>
+          </textarea></div>
+          <input type="submit" value="Create task" />
         </form>
       </div>
     );
