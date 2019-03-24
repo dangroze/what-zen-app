@@ -4,6 +4,7 @@ import CardList from '../CardList';
 import NewCardForm from '../NewCardForm';
 import firebase from 'firebase';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -17,23 +18,35 @@ class App extends Component {
       messagingSenderId: "696182130594"
     };
     firebase.initializeApp(config);
+
+   
+
   }
 
   render() {
     return (
+    
       <div className="App">
-      Here are your tasks
-        <div className="columns">
-          <div className="column is-3"></div>
-          <div className="column is-6">
-              <CardList db={firebase}/></div>
+      <div className="columns">
+      <div className="column">
+          <div className="column">
+            <CardList db={firebase} state='To do'/></div>
+          <div className="column">
+            <NewCardForm db={firebase} state='To do'/></div>
         </div>
-        <div className="columns">
-          <div className="column is-3"></div>
-          <div className="column is-6">
-            <NewCardForm db={firebase}/></div>
+            <div className="column">
+          <div className="column">
+            <CardList db={firebase} state='Doing'/></div>
         </div>
-      </div>
+      <div className="column">
+          <div className="column">
+            <CardList db={firebase} state='Done'/></div>
+        </div>
+        </div>
+        </div>
+
+
+
     );
   }
 }
