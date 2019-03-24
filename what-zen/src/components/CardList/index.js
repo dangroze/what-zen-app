@@ -10,7 +10,6 @@ class CardList extends Component {
     this.state = {
       cards: []
     };
-
     let app = this.props.db.database().ref('cards');
     app.on('value', snapshot => {
       this.getData(snapshot.val());
@@ -53,23 +52,22 @@ class CardList extends Component {
   render(){
     let cardNodes = this.state.cards.map((card) => {
       if (card.state === this.props.state) {
-      return ( 
-        <div className="card">
-          <div className="card-content">
-          <Card card = {card.title}/>
-          { (card.state !== 'Done' ) ? 
-            <button value={card} onClick={()=>this.nextStage(card)}>Next Stage</button>
-          :
-          null
-          }
-            <button value={card} onClick={()=>this.deleteCard(card)}>Delete</button>
+        return ( 
+          <div className="card">
+            <div className="card-content">
+              <Card card = {card.title}/>
+              { ( card.state !== 'Done' ) ? 
+                <button value={card} onClick={()=>this.nextStage(card)}>Next Stage</button>
+                  : null
+              } <button value={card} onClick={()=>this.deleteCard(card)}>Delete</button>
+            </div>
           </div>
-        </div>
-      )}
-    });
+        )
+      } return null
+    }) 
     return (
       <div>
-         <div> {this.props.state} </div>
+        <div> {this.props.state} </div>
         {cardNodes}
       </div>
     )

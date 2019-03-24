@@ -18,37 +18,33 @@ class App extends Component {
       messagingSenderId: "696182130594"
     };
     firebase.initializeApp(config);
-
-   
-
   }
 
   render() {
     return (
-    
       <div className="App">
-      <div className="columns">
-      <div className="column">
+        <div className="columns">
           <div className="column">
-            <CardList db={firebase} state='To do'/></div>
-          <div className="column">
-            <NewCardForm db={firebase} state='To do'/></div>
-        </div>
             <div className="column">
+              <CardList db={firebase} state='To do'/>
+            </div>
+            <div className="column">
+              <NewCardForm db={firebase} state='To do'/>
+            </div>
+          </div>
           <div className="column">
-            <CardList db={firebase} state='Doing'/></div>
-        </div>
-      <div className="column">
+            <div className="column">
+              <CardList db={firebase} state='Doing'/>
+            </div>
+          </div>
           <div className="column">
-            <CardList db={firebase} state='Done'/></div>
+            <div className="column">
+              <CardList db={firebase} state='Done'/>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-
-
-
+      </div>
     );
   }
 }
-
 export default App;
