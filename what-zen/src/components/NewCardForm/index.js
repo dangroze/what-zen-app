@@ -9,8 +9,8 @@ class NewCardForm extends Component {
     this.addCard = this.addCard.bind(this);
     this.state = {
       title: '',
-      body: '',
-      state: 'todo'
+      details: '',
+      status: 'todo'
     }
   }
 
@@ -23,19 +23,18 @@ class NewCardForm extends Component {
     e.preventDefault();
     app.database().ref('/cards').push({
       title: this.state.title,
-      state: 'To do'
+      status: 'To do'
     });
     this.setState({
       title: '',
-      state: 'To do'
+      status: 'To do'
     });
   }
 
   render() {
     return (
       <div className="NewCardForm">
-      <div> {this.props.state} </div>
-
+        New tasks
         <form action="#" onSubmit={this.addCard} id="SubmitNewTask">
           <div><input
             required

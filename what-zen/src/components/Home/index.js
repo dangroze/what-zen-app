@@ -15,7 +15,7 @@ class Home extends Component {
         <div className="columns">
           <div className="column">
             <div className="column">
-              <NewCardForm db={this.props.firebase} state='New card'/>
+              <NewCardForm db={this.props.firebase}/>
             </div>
             <div>
               I like to chat in this column
@@ -23,17 +23,17 @@ class Home extends Component {
           </div>
           <div className="column">
             <div className="column">
-              <CardList db={this.props.firebase} state='To do'/>
+              <CardList db={this.props.firebase} status='To do'/>
             </div>
           </div>
           <div className="column">
             <div className="column">
-              <CardList db={this.props.firebase} state='Doing'/>
+              <CardList db={this.props.firebase} status='Doing'/>
             </div>
           </div>
           <div className="column">
             <div className="column">
-              <CardList db={this.props.firebase} state='Done'/>
+              <CardList db={this.props.firebase} status='Done'/>
             </div>
           </div>
         </div>

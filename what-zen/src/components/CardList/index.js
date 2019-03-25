@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import Card from '../Card';
 import _ from 'lodash';
 import app from 'firebase/app';
+import CardDetailsForm from '../CardDetailsForm';
+import Popup from 'reactjs-popup';
 
 class CardList extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      cards: []
+      cards: [],
+
     };
     app.database().ref('cards').on('value', snapshot => {
       this.getData(snapshot.val());
@@ -20,7 +23,9 @@ class CardList extends Component {
     let cards = _(cardsVal)
       .keys()
       .map(cardKey => {
+        console.log(cardsVal)
         let cloned = _.clone(cardsVal[cardKey]);
+        console.log(cloned)
         cloned.key = cardKey;
         return cloned
         ;
@@ -37,27 +42,49 @@ class CardList extends Component {
 
   nextStage = (card)=> {
     let appl = app.database().ref('cards')
-    if (card.state === 'To do') {
+    if (card.status === 'To do') {
       appl.child(card.key).update({
-        state: 'Doing'
+        status: 'Doing'
       }) } else {
         appl.child(card.key).update({
-          state: 'Done'
+          status: 'Done'
+        });
+      };
+  };
+
+  previousStage = (card)=> {
+    let appl = app.database().ref('cards')
+    if (card.status === 'Done') {
+      appl.child(card.key).update({
+        status: 'Doing'
+      }) } else {
+        appl.child(card.key).update({
+          status: 'To do'
         });
       };
   };
 
   render(){
     let cardNodes = this.state.cards.map((card) => {
-      if (card.state === this.props.state) {
+      if (card.status === this.props.status) {
         return (
           <div className="card">
             <div className="card-content">
               <Card card = {card.title}/>
-              { ( card.state !== 'Done' ) ?
-                <button value={card} onClick={()=>this.nextStage(card)}>Next Stage</button>
+            
+              { ( card.status !== 'To do' ) ?
+                <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
                   : null
-              } <button value={card} onClick={()=>this.deleteCard(card)}>Delete</button>
+              } 
+               { ( card.status !== 'Done' ) ?
+                <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
+                  : null
+              } 
+              <Popup  trigger={<button className="button is-small">+</button>} position="right center">
+                <CardDetailsForm card = {card}/>
+              </Popup>
+              <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
+
             </div>
           </div>
         )
@@ -65,7 +92,7 @@ class CardList extends Component {
     })
     return (
       <div>
-        <div> {this.props.state} </div>
+        <div> {this.props.status} </div>
         {cardNodes}
       </div>
     )
