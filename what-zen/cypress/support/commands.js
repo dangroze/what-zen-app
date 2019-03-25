@@ -12,6 +12,15 @@
 // -- This is a parent command --
 // Cypress.Commands.add("login", (email, password) => { ... })
 //
+
+Cypress.Commands.add("login", () => {
+  cy.visit('/')
+  cy.contains('Sign In').click()
+  cy.get('#emailInput').type('r@r.com')
+  cy.get('#passwordInput').type('rrrrrr{enter}')
+})
+
+
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
