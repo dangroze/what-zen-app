@@ -8,13 +8,12 @@ cache:
 install:
   - cd what-zen
   - npm ci
+  - npm install start-server-and-test
 before_install:
   - 'npm install -g npm@6'
 before_script:
   - sleep 15
 script:
-  - npm start
-  - $cypress
-  - $(npm bin)/cypress run --record
+  - start-server-and-test start http://localhost:3030 cypress run --record
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
