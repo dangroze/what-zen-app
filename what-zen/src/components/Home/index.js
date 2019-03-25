@@ -11,7 +11,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="Home">
+      <div className="section">
         <div className="columns">
           <div className="column">
             <div className="column">

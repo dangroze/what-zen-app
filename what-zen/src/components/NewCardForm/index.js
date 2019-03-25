@@ -10,7 +10,8 @@ class NewCardForm extends Component {
     this.state = {
       title: '',
       details: '',
-      status: 'todo'
+      status: 'todo',
+      comments: ''
     }
   }
 
