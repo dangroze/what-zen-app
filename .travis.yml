@@ -6,7 +6,6 @@ cache:
     - ~/.npm
     - ~/.cache
 install:
-  - cd what-zen
   - npm ci
   - npm install start-server-and-test
 before_install:
