@@ -1,6 +1,50 @@
+# What Zen
+```
+                           _ooOoo_
+                          o8888888o
+                          88" . "88   What Zen Task Manager
+                          (| -_- |)   Community Empowerment 
+                          O\  =  /O
+                       ____/`---'\____
+                     .'  \\|     |//  `.
+                    /  \\|||  :  |||//  \
+                   /  _||||| -:- |||||_  \
+                   |   | \\\  -  /'| |   |
+                   | \_|  `\`---'//  |_/ |
+                   \  .-\__ `-. -'__/-.  /
+                 ___`. .'  /--.--\  `. .'___
+              ."" '<  `.___\_<|>_/___.' _> \"".
+             | | :  `- \`. ;`. _/; .'/ /  .' ; |
+             \  \ `-.   \_\_`. _.'_/_/  -' _.' /
+   ===========`-.`___`-.__\ \___  /__.-'_.'_.-'================
+                           `=--=-'                    
+```
+## Overview
+What Zen is a task manager app which combines the functionality of a minimalist Agile board integrated with a chat feature designed to empower its users. Now users can directly contribute in the decision making process for all the tasks in their board in real-time.
+
+What Zen is a production of Team What Zen - 
+* David Mears
+* Dan Groze
+* Adrien Fabre
+* Sherif Shendidy
+* Diptis Halder
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
+
+### To run the app locally:
+
+```
+git clone https://github.com/what-zen/what-zen-app.git
+```
+
+change down into the what-zen folder within the new what-zen-app folder and install dependencies:
+```
+cd what-zen-app
+cd what-zen
+npm install
+```
 
 In the project directory, you can run:
 
