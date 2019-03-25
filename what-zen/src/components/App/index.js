@@ -12,7 +12,7 @@ import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import HomePage from '../Home';
 
-import { AuthUserContext, withAuthorization } from '../Session';
+import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 import * as ROUTES from '../../constants/routes';
 
