@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:3000/",
+  "scripts": {
+    "cypress:open": "cypress open"
+  },
+  "projectId": "hx3pqe"
+}
