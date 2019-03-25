@@ -13,6 +13,7 @@ before_install:
 before_script:
   - sleep 15
 script:
+  - npm start
   - $cypress
   - $(npm bin)/cypress run --record
 after_success:
