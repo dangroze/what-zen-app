@@ -1,50 +1,41 @@
+import {
+  BrowserRouter as Router,
+  Route
+  } from 'react-router-dom';
 import React, { Component } from 'react';
-import './App.css';
-import CardList from '../CardList';
-import NewCardForm from '../NewCardForm';
-import firebase from 'firebase';
 
+import './App.css';
+
+import Navigation from '../Navigation/index';
+import LandingPage from '../Landing';
+import SignUpPage from '../SignUp';
+import SignInPage from '../SignIn';
+import HomePage from '../Home';
+
+import { AuthUserContext, withAuthorization } from '../Session';
+import { withAuthentication } from '../Session';
+import * as ROUTES from '../../constants/routes';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAXfFtVxxVYWlcgXctJmLU2Rn1dA5lL8uI",
-      authDomain: "what-zen.firebaseapp.com",
-      databaseURL: "https://what-zen.firebaseio.com",
-      projectId: "what-zen",
-      storageBucket: "what-zen.appspot.com",
-      messagingSenderId: "696182130594"
-    };
-    firebase.initializeApp(config);
-  }
 
   render() {
     return (
-      <div className="App">
-        <div className="columns">
-          <div className="column">
-            <div className="column">
-              <CardList db={firebase} state='To do'/>
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <Router>
+            <div className="App">
+              {authUser ? <p style={{color: "white"}}>Logged in as: {authUser.email}</p> : null}
+              <Navigation/>
+              <Route exact path={ROUTES.LANDING} component={LandingPage} />
+              <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+              <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+              <Route path={ROUTES.HOME} component={HomePage} />
             </div>
-            <div className="column">
-              <NewCardForm db={firebase} state='To do'/>
-            </div>
-          </div>
-          <div className="column">
-            <div className="column">
-              <CardList db={firebase} state='Doing'/>
-            </div>
-          </div>
-          <div className="column">
-            <div className="column">
-              <CardList db={firebase} state='Done'/>
-            </div>
-          </div>
-        </div>
-      </div>
+          </Router>
+        )}
+      </AuthUserContext.Consumer>
     );
   }
 }
-export default App;
+
+export default withAuthentication(App);

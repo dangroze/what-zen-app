@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import app from 'firebase/app';
+
 
 class NewCardForm extends Component {
   constructor(props) {
@@ -19,8 +21,7 @@ class NewCardForm extends Component {
 
   addCard(e){
     e.preventDefault();
-    let database = this.props.db.database().ref('/cards');
-    database.push({
+    app.database().ref('/cards').push({
       title: this.state.title,
       state: 'To do'
     });
