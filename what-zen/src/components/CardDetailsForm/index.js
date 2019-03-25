@@ -41,6 +41,7 @@ class CardDetailsForm extends Component {
     return (
       <div className="NewCardForm">
         <form action="#" onSubmit={this.addCardDetails}>
+          Title
           <div><input
             className="input"
             name="title"
@@ -48,6 +49,7 @@ class CardDetailsForm extends Component {
             type="text"
             value={this.state.title}
           /></div>
+          Details
           <div><textarea
             defaultValue= {this.state.details}
             className="textarea"
@@ -56,6 +58,7 @@ class CardDetailsForm extends Component {
             type="text"
             value={this.state.details}
           /></div>
+          Comments
           <div><textarea 
             defaultValue= {this.state.comments}
             className="textarea"
