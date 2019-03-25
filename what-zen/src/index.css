@@ -1,5 +1,11 @@
 * {
   font-size: 11px;
+  color: rgb(70, 22, 0)
+  
+}
+
+a:link {
+  color: rgb(77, 21, 30);
 }
 
 body {
