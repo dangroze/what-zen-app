@@ -34,6 +34,8 @@ class NewCardForm extends Component {
   render() {
     return (
       <div className="NewCardForm">
+      <div> {this.props.state} </div>
+
         <form action="#" onSubmit={this.addCard} id="SubmitNewTask">
           <div><input
             required

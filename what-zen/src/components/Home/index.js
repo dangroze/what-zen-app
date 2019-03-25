@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withAuthorization } from '../Session';
 import CardList from '../CardList';
 import NewCardForm from '../NewCardForm';
-import firebase from 'firebase';
 
 class Home extends Component {
   constructor(props) {
@@ -16,10 +15,15 @@ class Home extends Component {
         <div className="columns">
           <div className="column">
             <div className="column">
-              <CardList db={this.props.firebase} state='To do'/>
+              <NewCardForm db={this.props.firebase} state='New card'/>
             </div>
+            <div>
+              I like to chat in this column
+            </div>
+          </div>
+          <div className="column">
             <div className="column">
-              <NewCardForm db={this.props.firebase} state='To do'/>
+              <CardList db={this.props.firebase} state='To do'/>
             </div>
           </div>
           <div className="column">
@@ -29,7 +33,7 @@ class Home extends Component {
           </div>
           <div className="column">
             <div className="column">
-              <CardList db={firebase} state='Done'/>
+              <CardList db={this.props.firebase} state='Done'/>
             </div>
           </div>
         </div>
