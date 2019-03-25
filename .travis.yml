@@ -2,8 +2,8 @@ language: node_js
 node_js:
   - '10'
 cache:
-  npm: true
   directories:
+    - ~/.npm
     - ~/.cache
 install:
   - cd what-zen
@@ -12,8 +12,8 @@ install:
 before_install:
   - 'npm install -g npm@6'
 before_script:
-  - sleep 15
+  - npm start -- --silent &
 script:
-  - start-server-and-test start http://localhost:3030 cypress run --record
+  - cypress run --record
 after_success:
   - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
