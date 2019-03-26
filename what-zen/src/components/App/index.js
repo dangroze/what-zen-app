@@ -26,7 +26,7 @@ class App extends Component {
         {authUser => (
           <Router>
             <div className="App">
-              {authUser ? <p style={{color: "teal"}}>Logged in as: {authUser.email}</p> : null}
+              {authUser ? <p style={{color: "teal"}}>Hello {authUser.email.split("@")[0]}!</p> : null}
               <Navigation/>
               <Route exact path={ROUTES.LANDING} component={LandingPage} />
               <Route path={ROUTES.SIGN_UP} component={SignUpPage} />

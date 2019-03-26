@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
-import UserEmail from './UserEmail';
 import _ from 'lodash';
 
 
@@ -14,6 +13,7 @@ class Chat extends Component {
       message: '',
       user: this.props.db,
       useremail: '',
+      dateCreated: '',
       messages: []
     }
 
@@ -23,6 +23,8 @@ class Chat extends Component {
   }
 
   getMessages(values) {
+    console.log("sherif");
+    console.log(values);
     let messages = _(values)
     .keys()
     .map(messageKey => {
@@ -41,29 +43,20 @@ class Chat extends Component {
 
   addMessage(e){
     let mess = this.props.useremail + " said: " + this.state.message;
-    console.log(mess)
     e.preventDefault();
     app.database().ref('chat').push({
       message: mess,
-      useremail: this.props.useremail
+      useremail: this.props.useremail,
+      dateCreated: Date.now()
     });
     this.setState({
       message: '',
     });
-
-    // console.log(mess);
   }
 
   render() {
     // get messages to display
     let messagesToDisply = this.state.messages.map((message) => message.message).join("\n");
-
-    // messagesToDisply.map(message => (message.message));
-
-
-
-
-    // console.log("Sherif: " + messagesToDisply)
 
     return (
       <div className="Chat">
