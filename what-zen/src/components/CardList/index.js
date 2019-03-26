@@ -23,9 +23,7 @@ class CardList extends Component {
     let cards = _(cardsVal)
       .keys()
       .map(cardKey => {
-        console.log(cardsVal)
         let cloned = _.clone(cardsVal[cardKey]);
-        console.log(cloned)
         cloned.key = cardKey;
         return cloned
         ;
@@ -40,6 +38,18 @@ class CardList extends Component {
     app.database().ref('cards').child(card.key).remove()
   }
 
+  checkReverse(card, checker){
+    let appl = app.database().ref('cards')
+    if (checker === 'urgent') {
+      appl.child(card.key).update({
+        urgent: !card.urgent
+      }) } else {
+        appl.child(card.key).update({
+        important: !card.important
+      });
+    };
+  };
+
   nextStage = (card)=> {
     let appl = app.database().ref('cards')
     if (card.status === 'To do') {
@@ -48,8 +58,8 @@ class CardList extends Component {
       }) } else {
         appl.child(card.key).update({
           status: 'Done'
-        });
-      };
+      }); 
+    };
   };
 
   previousStage = (card)=> {
@@ -70,26 +80,45 @@ class CardList extends Component {
         return (
           <div className="card">
             <div className="card-content">
-              <Card card = {card.title}/>
-            
-              { ( card.status !== 'To do' ) ?
-                <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
-                  : null
-              } 
-               { ( card.status !== 'Done' ) ?
-                <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
-                  : null
-              } 
-              <Popup  trigger={<button className="button is-small">+</button>} position="right center">
-                <CardDetailsForm card = {card}/>
+              <Card card = {card.title} />
+              <div className="field">
+              
+                { card.important === true
+                  ?
+                  <div><input type="checkbox" name="important" className="switch is-success" checked="checked" value={card} onClick={()=>this.checkReverse(card, 'important')}/>
+                  <label for="important"> Important </label></div>           
+                  :
+                  <div><input type="checkbox" name="important" className="switch is-success" value={card} onClick={()=>this.checkReverse(card, 'important')}/>
+                  <label for="important"> Important </label></div>            
+                }
+                
+                { card.urgent === true
+                  ?
+                  <div><input type="checkbox" name="important" className="switch is-success" checked="checked" value={card} onClick={()=>this.checkReverse(card, 'urgent')}/>
+                  <label for="important"> Urgent </label></div>           
+                  :
+                  <div><input type="checkbox" name="important" className="switch is-success" value={card} onClick={()=>this.checkReverse(card, 'urgent')}/>
+                  <label for="important"> Urgent </label></div>            
+                }
+                
+                { ( card.status !== 'To do' ) ?
+                  <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
+                    : null
+                } 
+                { ( card.status !== 'Done' ) ?
+                  <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
+                    : null
+                } 
+              <Popup  trigger={<button className="button is-small">...</button>} position="left center">
+                <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
               <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
-
             </div>
           </div>
+        </div>
         )
       } return null
-    })
+  })
     return (
       <div>
         <div> {this.props.status} </div>

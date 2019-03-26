@@ -7,7 +7,7 @@ class Card extends Component {
   render(){
     return (
       <div>
-        {this.props.card}
+        {this.props.card}        
       </div>
     )
   }
