@@ -12,7 +12,7 @@ class Chat extends Component {
     this.state = {
       message: '',
       user: this.props.db,
-      user_email: UserEmail
+      useremail: ''
     }
   }
 
@@ -22,46 +22,56 @@ class Chat extends Component {
   }
 
   addMessage(e){
-    let mess = this.state.message;
-    mess = this.state.user_email + " said: " + mess;
+    let mess = this.props.useremail + " said: " + this.state.message;
+    console.log(mess)
     e.preventDefault();
     app.database().ref('chat').push({
-      message: mess
+      message: mess,
+      useremail: this.props.useremail
     });
     this.setState({
       message: '',
     });
 
-    console.log(mess);
+    // console.log(mess);
   }
-
 
   render() {
     return (
       <div className="NewCardForm">
-        New message
-        <textarea
-           className="text-area"
-           rows="20"
-           cols="40"
-           name="messageList"
-           type="text"
-           value={this.state.details}
-           />
-           <br />
+      <AuthUserContext.Consumer>
+        {authUser => (
+        <div>
+          <p>New message</p>
+          <textarea
+             className="text-area"
+             rows="20"
+             cols="40"
+             name="messageList"
+             type="text"
+             value={this.state.details}
+             />
+             <br />
+          <form action="#" onSubmit={this.addMessage}>
+            <div>
+              <input type='hidden' name='username' value='Sherif'/>
+              <input
+                required
+                className="input"
+                name="message"
+                onChange={this.updateInput}
+                type="text"
+                placeholder="Enter a new message here"
+                value={this.state.message}
+              />
+            </div>
+          </form>
+        </div>
+
+        )}
+      </AuthUserContext.Consumer>
 
 
-        <form action="#" onSubmit={this.addMessage}>
-          <div><input
-            required
-            className="input"
-            name="message"
-            onChange={this.updateInput}
-            type="text"
-            placeholder="Enter a new message here"
-            value={this.state.message}
-          /></div>
-        </form>
       </div>
     );
   }

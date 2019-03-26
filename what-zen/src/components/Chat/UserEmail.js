@@ -4,6 +4,8 @@ import {
   } from 'react-router-dom';
 import React, { Component } from 'react';
 
+// import './App.css';
+
 import Navigation from '../Navigation/index';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
@@ -16,7 +18,7 @@ import * as ROUTES from '../../constants/routes';
 
 import Chat from "../Chat"
 
-class App extends Component {
+class UserEmail extends Component {
 
   render() {
     return (
@@ -25,6 +27,7 @@ class App extends Component {
           <Router>
             <div className="App">
               {authUser ? <p style={{color: "teal"}}>Logged in as: {authUser.email}</p> : null}
+              {console.log("authUser: " + authUser)};
               <Navigation/>
               <Route exact path={ROUTES.LANDING} component={LandingPage} />
               <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
@@ -38,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default withAuthentication(App);
+export default withAuthentication(UserEmail);
