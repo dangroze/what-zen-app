@@ -6,7 +6,7 @@ import SignOutButton from '../SignOut';
 import { AuthUserContext } from '../Session';
 
 const Navigation = () => (
-  <nav className="navbar-end" >
+<nav class="navbar" role="navigation" aria-label="main navigation">
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? <NavigationAuth /> : <NavigationNonAuth />
@@ -23,7 +23,7 @@ const NavigationAuth = () => (
     <ul className="navbar-item  button is-primary has-text-light	">
       <Link to={ROUTES.LANDING}>Landing</Link>
     </ul> */}
-    <ul className="button is-small ">
+    <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.HOME}>What Zen</Link>
     </ul>
     <ul>
@@ -33,11 +33,12 @@ const NavigationAuth = () => (
 );
 
 const NavigationNonAuth = () => (
+
   <nav className = "columns">
-    <ul className="button ">
+    <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.LANDING}>What Zen</Link>
     </ul>
-    <ul className="button">
+    <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </ul>>
   </nav>
