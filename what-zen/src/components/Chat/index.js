@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
 import _ from 'lodash';
+import GetUsername from './GetUsername'
 
 
 class Chat extends Component {
@@ -23,8 +24,13 @@ class Chat extends Component {
   }
 
   getMessages(values) {
-    console.log("sherif");
-    console.log(values);
+    // console.log("sherif");
+    // console.log(GetUsername);
+    // console.log('sherif end of object');
+    // let usss = GetUsername;
+    // console.log("sherif");
+    // console.log(_(values));
+    // console.log('sherif end of object');
     let messages = _(values)
     .keys()
     .map(messageKey => {
@@ -72,10 +78,9 @@ class Chat extends Component {
              name="messageList"
              type="text"
              value={messagesToDisply}
-
              />
              <br />
-          <form action="#" onSubmit={this.addMessage}>
+          <form action="#" onSubmit={this.addMessage} className="messageForm">
             <div>
               <input type='hidden' name='username' value='Sherif'/>
               <input
@@ -93,65 +98,9 @@ class Chat extends Component {
 
         )}
       </AuthUserContext.Consumer>
-
-
       </div>
     );
   }
 }
 
-// export default NewCardForm;
-//
-// function Chat() {
-//
-//   // addCard(e){
-//   //    e.preventDefault();
-//   //    app.database().ref('/chats').push({
-//   //      message: this.state.message,
-//   //      user:
-//   //    });
-//   //    this.setState({
-//   //      title: '',
-//   //      status: 'To do'
-//   //    });
-//   //  }
-//
-//
-//   return(
-//     <div>
-//     <textarea
-//       className="text-area"
-//       rows="20"
-//       cols="40"
-//       name="details"
-//       // onChange={this.updateInput}
-//       type="text"
-//       // value={this.state.details}
-//       />
-//       <br />
-//         <input
-//           className="input"
-//           name="title"
-//           id="newTaskTitleField"
-//           // onChange={this.updateInput}
-//           type="text"
-//           placeholder="Enter a message to chat"
-//           // value={this.state.title}
-//         />
-//     </div>
-//   )
-// }
-
 export default Chat
-
-
-// User has: doCreateUserWithEmailAndPassword
-// index.js:32 User has: doSignInWithEmailAndPassword
-// index.js:32 User has: doSignOut
-// index.js:32 User has: doPasswordReset
-// index.js:32 User has: doPasswordUpdate
-// index.js:32 User has: user
-// index.js:32 User has: users
-// index.js:32 User has: cards
-// index.js:32 User has: auth
-// index.js:32 User has: db
