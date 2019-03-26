@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { withAuthorization } from '../Session';
 import CardList from '../CardList';
 import NewCardForm from '../NewCardForm';
+import Chat from '../Chat'
+import app from 'firebase/app';
+
 
 class Home extends Component {
   constructor(props) {
@@ -18,7 +21,10 @@ class Home extends Component {
               <NewCardForm db={this.props.firebase}/>
             </div>
             <div>
-              I like to chat in this column
+              <h3>Your board's chatting area</h3>
+            </div>
+            <div className="chatDiv">
+              <Chat db={this.props.firebase}/>
             </div>
           </div>
           <div className="column">

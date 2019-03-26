@@ -4,8 +4,6 @@ import {
   } from 'react-router-dom';
 import React, { Component } from 'react';
 
-import './App.css';
-
 import Navigation from '../Navigation/index';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
