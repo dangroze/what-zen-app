@@ -68,6 +68,7 @@ import NewCardForm from '../NewCardForm';
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 import Chat from '../Chat'
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -79,6 +80,7 @@ class Home extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
       <div>
+        {authUser ? <p style={{color: "teal"}}>Logged in as: {authUser.email}</p> : null}
         <div className="section">
           <div className="columns">
             <div className="column">

@@ -6,40 +6,42 @@ import SignOutButton from '../SignOut';
 import { AuthUserContext } from '../Session';
 
 const Navigation = () => (
-  <div className='Navigation'>
+<nav className="nav-bar" role="navigation" aria-label="main navigation">
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? <NavigationAuth /> : <NavigationNonAuth />
       }
     </AuthUserContext.Consumer>
-  </div>
+  </nav>
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <em>What Zen!</em>
-    <li>
+  <nav className = "columns">
+  {/* <ul className="navbar-item  button is-primary has-text-light is-info">
+    What Zen
+    </ul>
+    <ul className="navbar-item  button is-primary has-text-light	">
       <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
+    </ul> */}
+    <ul className="button is-small button is-info is-outlined">
+      <Link to={ROUTES.HOME}>What Zen</Link>
+    </ul>
+    <ul>
       <SignOutButton />
-    </li>
-  </ul>
+    </ul>
+  </nav>
 );
 
 const NavigationNonAuth = () => (
-  <ul>
-    <em>What Zen!</em>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
+
+  <nav className = "columns">
+    <ul className="button is-small button is-info is-outlined">
+      <Link to={ROUTES.LANDING}>What Zen</Link>
+    </ul>
+    <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+    </ul>>
+  </nav>
 );
 
 export default Navigation;
