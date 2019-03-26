@@ -16,6 +16,8 @@ import { AuthUserContext, withAuthorization } from '../Session';
 import { withAuthentication } from '../Session';
 import * as ROUTES from '../../constants/routes';
 
+import Chat from "../Chat"
+
 class App extends Component {
 
   render() {
@@ -24,7 +26,6 @@ class App extends Component {
         {authUser => (
           <Router>
             <div className="App">
-              {authUser ? <p style={{color: "white"}}>Logged in as: {authUser.email}</p> : null}
               <Navigation/>
               <Route exact path={ROUTES.LANDING} component={LandingPage} />
               <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
