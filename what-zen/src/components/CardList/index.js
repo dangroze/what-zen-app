@@ -23,9 +23,7 @@ class CardList extends Component {
     let cards = _(cardsVal)
       .keys()
       .map(cardKey => {
-        console.log(cardsVal)
         let cloned = _.clone(cardsVal[cardKey]);
-        console.log(cloned)
         cloned.key = cardKey;
         return cloned
         ;
@@ -70,7 +68,7 @@ class CardList extends Component {
         return (
           <div className="card">
             <div className="card-content">
-              <Card card = {card.title}/>
+              <Card card = {card.title} />
             
               { ( card.status !== 'To do' ) ?
                 <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
@@ -81,10 +79,9 @@ class CardList extends Component {
                   : null
               } 
               <Popup  trigger={<button className="button is-small">...</button>} position="right center">
-                <CardDetailsForm card = {card}/>
+                <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
               <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
-
             </div>
           </div>
         )
