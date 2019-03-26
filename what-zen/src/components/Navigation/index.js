@@ -6,7 +6,7 @@ import SignOutButton from '../SignOut';
 import { AuthUserContext } from '../Session';
 
 const Navigation = () => (
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<nav className="nav-bar" role="navigation" aria-label="main navigation">
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? <NavigationAuth /> : <NavigationNonAuth />

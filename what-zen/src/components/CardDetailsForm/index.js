@@ -9,10 +9,10 @@ class CardDetailsForm extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.addCardDetails = this.addCardDetails.bind(this);
     this.state = {
-      title: null || this.props.card.title,
+      title: '' || this.props.card.title,
       status: 'todo',
-      details: null || this.props.card.details,
-      comments: null || this.props.card.comments
+      details: '' || this.props.card.details,
+      comments: '' || this.props.card.comments
 
     }
   }
@@ -25,6 +25,9 @@ class CardDetailsForm extends Component {
   addCardDetails(e){
     e.preventDefault();
     let appl = app.database().ref('cards')
+    console.log(appl)
+    console.log(appl.child((this.props.card.key)))
+
     appl.child(this.props.card.key).update({
       title: this.state.title,
       details: this.state.details,
@@ -36,6 +39,7 @@ class CardDetailsForm extends Component {
       comments: this.state.comments
     });
   }
+
 
   render() {
     return (

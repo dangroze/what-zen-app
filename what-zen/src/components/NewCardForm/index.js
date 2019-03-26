@@ -13,7 +13,10 @@ class NewCardForm extends Component {
       details: '',
       status: 'todo',
       comments: '',
-      user: ''
+      user: '', 
+      important: false,
+      urgent: false 
+
     }
   }
   
@@ -28,13 +31,21 @@ class NewCardForm extends Component {
     app.database().ref('/cards').push({
       title: this.state.title,
       status: 'To do',
-      user: this.props.useremail
+      user: this.props.useremail,
+      details: '',
+      comments: '', 
+      important: false,
+      urgent: false 
 
     });
     this.setState({
       title: '',
       status: 'To do',
-      user: this.props.useremail
+      user: this.props.useremail,
+      details: '',
+      comments: '', 
+      important: false,
+      urgent: false 
 
     });
   }
