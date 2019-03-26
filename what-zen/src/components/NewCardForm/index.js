@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import app from 'firebase/app';
-
+import app, { auth } from 'firebase/app';
+import { AuthUserContext, withAuthorization } from '../Session';
+import { withAuthentication } from '../Session';
 
 class NewCardForm extends Component {
   constructor(props) {
@@ -9,11 +10,16 @@ class NewCardForm extends Component {
     this.addCard = this.addCard.bind(this);
     this.state = {
       title: '',
-      body: '',
-      state: 'todo'
+      details: '',
+      status: 'todo',
+      comments: '',
+      user: '', 
+      important: false,
+      urgent: false 
+
     }
   }
-
+  
   updateInput(e){
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -21,32 +27,44 @@ class NewCardForm extends Component {
 
   addCard(e){
     e.preventDefault();
+
     app.database().ref('/cards').push({
       title: this.state.title,
-      state: 'To do'
+      status: 'To do',
+      user: this.props.useremail,
+      details: '',
+      comments: '', 
+      important: false,
+      urgent: false 
+
     });
     this.setState({
       title: '',
-      state: 'To do'
+      status: 'To do',
+      user: this.props.useremail,
+      details: '',
+      comments: '', 
+      important: false,
+      urgent: false 
+
     });
   }
 
   render() {
     return (
       <div className="NewCardForm">
-      <div> {this.props.state} </div>
-
-        <form action="#" onSubmit={this.addCard} id="SubmitNewTask">
+        New tasks
+        <form action="#" onSubmit={this.addCard} >
           <div><input
             required
             className="input"
             name="title"
-            id="newTaskTitleField"
             onChange={this.updateInput}
             type="text"
             placeholder="Enter a new task here"
             value={this.state.title}
-          /></div>
+          />
+          </div>
         </form>
       </div>
     );
