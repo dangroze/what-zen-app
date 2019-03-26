@@ -79,7 +79,6 @@ class Home extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
       <div>
-        {authUser ? <p style={{color: "white"}}>Logged in as: {authUser.email}</p> : null}
         <div className="section">
           <div className="columns">
             <div className="column">

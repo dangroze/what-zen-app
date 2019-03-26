@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
-import UserEmail from './UserEmail'
+import UserEmail from './UserEmail';
+import _ from 'lodash';
 
 
 class Chat extends Component {
@@ -12,8 +13,25 @@ class Chat extends Component {
     this.state = {
       message: '',
       user: this.props.db,
-      useremail: ''
+      useremail: '',
+      messages: []
     }
+
+    app.database().ref('chat').on('value', snapshot => {
+      this.getMessages(snapshot.val());
+    });
+  }
+
+  getMessages(values) {
+    let messages = _(values)
+    .keys()
+    .map(messageKey => {
+      let cloned = _.clone(values[messageKey]);
+      cloned.key = messageKey;
+      return cloned;
+    })
+    .value();
+    this.setState({messages: messages});
   }
 
   updateInput(e){
@@ -37,19 +55,31 @@ class Chat extends Component {
   }
 
   render() {
+    // get messages to display
+    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n");
+
+    // messagesToDisply.map(message => (message.message));
+
+
+
+
+    // console.log("Sherif: " + messagesToDisply)
+
     return (
-      <div className="NewCardForm">
+      <div className="Chat">
       <AuthUserContext.Consumer>
         {authUser => (
         <div>
           <p>New message</p>
           <textarea
+             disabled
              className="text-area"
              rows="20"
              cols="40"
              name="messageList"
              type="text"
-             value={this.state.details}
+             value={messagesToDisply}
+
              />
              <br />
           <form action="#" onSubmit={this.addMessage}>
