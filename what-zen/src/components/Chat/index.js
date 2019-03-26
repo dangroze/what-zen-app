@@ -63,7 +63,6 @@ class Chat extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
         <div>
-          <p>New message</p>
           <textarea
              disabled
              className="text-area"
