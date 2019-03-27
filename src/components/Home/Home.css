@@ -27,3 +27,8 @@ h2 {
 .chatDiv {
   max-height: 550px;
 }
+
+.card {
+  margin: 10px;
+  box-shadow: 3px 6px #888888;
+}
