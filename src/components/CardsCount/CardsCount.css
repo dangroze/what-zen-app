@@ -1,0 +1,8 @@
+.CardsCount {
+  float: right;
+  margin-top: -12px;
+  margin-right: -4px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+}
