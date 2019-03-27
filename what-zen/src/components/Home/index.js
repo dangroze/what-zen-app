@@ -3,7 +3,6 @@ import { withAuthorization } from '../Session';
 import CardList from '../CardList';
 import NewCardForm from '../NewCardForm';
 import { AuthUserContext } from '../Session';
-import { withAuthentication } from '../Session';
 import Chat from '../Chat'
 class Home extends Component {
   constructor(props) {

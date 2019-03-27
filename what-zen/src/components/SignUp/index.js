@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// the link is to be used by the login page if a user has no account yet
-// it is not used on this page
 import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
 
@@ -22,9 +20,7 @@ const INITIAL_STATE = {
 };
 
 class SignUpFormBase extends Component {
-  constructor(props) {
-    super(props);
-  }
+
 
   state = { ...INITIAL_STATE };
 
@@ -59,12 +55,7 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      username === '';
-
+   
     const {
       username,
       email,
@@ -72,6 +63,12 @@ class SignUpFormBase extends Component {
       passwordTwo,
       error,
     } = this.state;
+
+    const isInvalid =
+    passwordOne !== passwordTwo ||
+    passwordOne === '' ||
+    email === '' ||
+    username === '';
 
     return (
       <form onSubmit={this.onSubmit}>

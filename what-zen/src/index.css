@@ -1,7 +1,16 @@
 * {
-  font-size: 12px;
+  font-size: 10px;
   color: #461600;
   height: auto;
+}
+
+
+#title {
+  font-size: 18px;
+}
+
+#main {
+  font-size: 14px;
 }
 
 .section {
