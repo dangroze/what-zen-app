@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
 import _ from 'lodash';
-import GetUsername from './GetUsername'
+// import GetUsername from './GetUsername'
 
 
 class Chat extends Component {
@@ -15,7 +15,8 @@ class Chat extends Component {
       user: this.props.db,
       useremail: '',
       dateCreated: '',
-      messages: []
+      messages: [],
+      username: ''
     }
 
     app.database().ref('chat').on('value', snapshot => {
@@ -24,15 +25,13 @@ class Chat extends Component {
   }
 
   getMessages(values) {
-    // console.log("sherif");
-    // console.log(GetUsername);
-    // console.log('sherif end of object');
-    // let usss = GetUsername;
-    // console.log("sherif");
-    // console.log(_(values));
-    // console.log('sherif end of object');
+    let totalMsgs = 0;
+    for(let msgs in _(values.messages)) {
+      totalMsgs++
+    }
+
     let messages = _(values)
-    .keys()
+    .keys().reverse()
     .map(messageKey => {
       let cloned = _.clone(values[messageKey]);
       cloned.key = messageKey;
@@ -48,12 +47,18 @@ class Chat extends Component {
   }
 
   addMessage(e){
-    let mess = this.props.useremail + " said: " + this.state.message;
+    // this.state.username = <GetUsername userEmail={this.props.useremail} />
+    let fullDate = Date(Date.now());
+    fullDate = fullDate.toString();
+    let date = fullDate.split(" ");
+    date = `${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
+    let mess = this.props.useremail + " said: (" + date + ")\n\t" + this.state.message;
     e.preventDefault();
     app.database().ref('chat').push({
       message: mess,
       useremail: this.props.useremail,
-      dateCreated: Date.now()
+      dateCreated: Date.now(),
+      username: this.state.username
     });
     this.setState({
       message: '',
@@ -69,9 +74,9 @@ class Chat extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
         <div>
-          <p>New message</p>
           <textarea
              disabled
+             id="text-area"
              className="text-area"
              rows="20"
              cols="40"
@@ -95,7 +100,6 @@ class Chat extends Component {
             </div>
           </form>
         </div>
-
         )}
       </AuthUserContext.Consumer>
       </div>
