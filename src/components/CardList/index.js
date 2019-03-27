@@ -93,10 +93,8 @@ class CardList extends Component {
             <div className="card-content">
               <Card card = {card.title} />
               <div className="field">
-
                 {checkBox('important', (card.important === true), card)}
                 {checkBox('urgent', (card.urgent === true), card)}
-
                 { ( card.status !== 'To do' ) ?
                   <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
                     : null

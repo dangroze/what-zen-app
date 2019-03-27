@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { withFirebase } from '../Firebase';
-
 import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
@@ -21,12 +20,10 @@ const INITIAL_STATE = {
 
 class SignUpFormBase extends Component {
 
-
   state = { ...INITIAL_STATE };
 
   onSubmit = event => {
     const { username, email, passwordOne } = this.state;
-
     this.props.firebase
         // Creates a user in the Firebase authentication database
       .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -46,7 +43,6 @@ class SignUpFormBase extends Component {
       .catch(error => {
         this.setState({ error });
       });
-
     event.preventDefault();
   }
 
@@ -55,7 +51,6 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-   
     const {
       username,
       email,

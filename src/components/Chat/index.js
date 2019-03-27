@@ -4,7 +4,6 @@ import app from 'firebase/app';
 import _ from 'lodash';
 // import GetUsername from './GetUsername'
 
-
 class Chat extends Component {
   constructor(props) {
     super(props)
@@ -42,8 +41,6 @@ class Chat extends Component {
   }
 
   addMessage(e){
-
-    // this.state.username = <GetUsername userEmail={this.props.useremail} />
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
@@ -62,8 +59,8 @@ class Chat extends Component {
   }
 
   render() {
-    // get messages to display
-    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n  ----  \n");
+    let messagesToDisply = this.state.messages.map((message) =>
+      message.message).join("\n  ----  \n");
 
     return (
       <div className="Chat">
@@ -95,7 +92,6 @@ class Chat extends Component {
              type="text"
              value={messagesToDisply}
              />
-
         </div>
         )}
       </AuthUserContext.Consumer>

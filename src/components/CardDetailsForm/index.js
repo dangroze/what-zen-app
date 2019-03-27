@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import app from 'firebase/app';
 
-
-
 class CardDetailsForm extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +11,6 @@ class CardDetailsForm extends Component {
       status: 'todo',
       details: '' || this.props.card.details,
       comments: '' || this.props.card.comments
-
     }
   }
 
@@ -40,7 +37,6 @@ class CardDetailsForm extends Component {
     });
   }
 
-
   render() {
     return (
       <div className="NewCardForm">
@@ -66,7 +62,7 @@ class CardDetailsForm extends Component {
             value={this.state.details}
           /></div>
           Comments
-          <div><textarea 
+          <div><textarea
             defaultValue= {this.state.comments}
             className="textarea"
             name="comments"
@@ -76,7 +72,7 @@ class CardDetailsForm extends Component {
             value={this.state.comments}
           /></div>
               <div> created by {this.props.card.user} </div>
-              <div> {this.props.card.timecreated} </div>
+              <div> {this.props.card.timeCreated} </div>
 
             <button className="button is-small" onClick={()=>this.addCardDetails}>Save changes</button>
         </form>
