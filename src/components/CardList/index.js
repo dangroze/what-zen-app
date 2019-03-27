@@ -21,7 +21,7 @@ class CardList extends Component {
   getData(values){
     let cardsVal = values;
     let cards = _(cardsVal)
-      .keys()
+      .keys().reverse()
       .map(cardKey => {
         let cloned = _.clone(cardsVal[cardKey]);
         cloned.key = cardKey;
