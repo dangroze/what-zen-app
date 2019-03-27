@@ -19,7 +19,7 @@ class Home extends Component {
         {authUser => (
       <div>
         {authUser ? <p style={{color: "teal"}}>Logged in as: {authUser.email}</p> : null}
-        <div className="section">
+        <div className="section" name="mainSection">
           <div className="columns">
             <div className="column outerCardsList">
               <h2>Create a new task</h2>
