@@ -114,7 +114,7 @@ class CardList extends Component {
       } return null
   })
     return (
-      <div>
+      <div className="cardDiv">
         {cardNodes}
       </div>
     )
