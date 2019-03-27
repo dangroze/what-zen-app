@@ -1,3 +1,29 @@
-.decisionMatrix {
+.container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr;
+  grid-template-rows: 1fr 5fr 5fr;
+  grid-column-gap: 4px;
+  grid-row-gap: 4px;
+  justify-items: stretch;
+  align-items: stretch;
+  height: 400px;
+  width: 400px;
+}
 
+div {
+  border-radius: 3px;
+}
+
+.left-label {
+  writing-mode: vertical-rl;
+  transform: rotate(-180deg);
+  background-color: teal;
+  color: white;
+  padding: 5px;
+}
+
+.top-label {
+  background-color: teal;
+  color: white;
+  padding: 5px;
 }
