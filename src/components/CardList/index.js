@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import Card from '../Card';
 import _ from 'lodash';
 import app from 'firebase/app';
-import CardDetailsForm from '../CardDetailsForm';
 import Popup from 'reactjs-popup';
+import './CardList.css'
+
+import Card from '../Card';
+import CardDetailsForm from '../CardDetailsForm';
+import CardsCount from '../CardsCount'
 
 class CardList extends Component {
 
@@ -11,7 +14,6 @@ class CardList extends Component {
     super(props);
     this.state = {
       cards: [],
-
     };
     app.database().ref('cards').on('value', snapshot => {
       this.getData(snapshot.val());
@@ -116,7 +118,8 @@ class CardList extends Component {
       } return null
   })
     return (
-      <div className="cardDiv">
+      <div className="CardList">
+        <div className='CardsCount'><CardsCount status={this.props.status}/></div>
         {cardNodes}
       </div>
     )
