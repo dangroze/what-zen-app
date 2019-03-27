@@ -51,7 +51,7 @@ class Chat extends Component {
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
-    date = `${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
+    date = `on ${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
     let mess = this.props.useremail + " said: (" + date + ")\n\t" + this.state.message;
     e.preventDefault();
     app.database().ref('chat').push({
@@ -67,7 +67,7 @@ class Chat extends Component {
 
   render() {
     // get messages to display
-    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n");
+    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n  ----  \n");
 
     return (
       <div className="Chat">
