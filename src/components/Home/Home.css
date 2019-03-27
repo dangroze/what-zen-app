@@ -6,6 +6,11 @@ h2 {
   font-size: 20px;
 }
 
+#plus {
+  height: 3em;
+  width: 3em;
+}
+
 .scrollable {
   height:90%;
   overflow-y: auto;

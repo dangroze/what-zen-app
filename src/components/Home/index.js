@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import { withAuthorization } from '../Session';
+import { AuthUserContext } from '../Session';
+import Popup from 'reactjs-popup';
+import './Home.css';
+import plus from '../../plus.png'
 import CardList from '../CardList';
+import Chat from '../Chat'
 import CardsCount from '../CardsCount';
 import NewCardForm from '../NewCardForm';
-import { AuthUserContext } from '../Session';
-import Chat from '../Chat'
-import './Home.css';
 
 class Home extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props.firebase)
   }
 
   render() {
+    const statuses = ['To do', 'Doing', 'Done']
+    const columnsWithStatus = statuses.map(status => {
+      return (
+        <div className="column outerCardsList">
+          <h2>{status}</h2>
+          <div className="column innerCardsList scrollable">
+            <CardList db={this.props.firebase} status={status}/>
+          </div>
+        </div>
+      )
+    })
+
     return (
       <AuthUserContext.Consumer>
         {authUser => (
@@ -24,7 +37,11 @@ class Home extends Component {
             <div className="column outerCardsList">
               <h2>Create a new task</h2>
               <div className="column">
-                <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
+                <Popup trigger={<button id="createNewTask" className="button is-large">
+                    <img id='plus' alt='add task' src={plus}/>
+                  </button>} modal position="center top">
+                  <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
+                </Popup>
                 <hr/>
                 <h2>Your board's chatting area</h2>
                 <div className="column innerCardsList scrollable chatDiv">
@@ -32,24 +49,7 @@ class Home extends Component {
                 </div>
               </div>
             </div>
-            <div className="column outerCardsList">
-              <h2>To do</h2>
-              <div className="column innerCardsList scrollable">
-                <CardList db={this.props.firebase} status='To do'/>
-              </div>
-            </div>
-            <div className="column outerCardsList">
-              <h2>In progress</h2>
-              <div className="column innerCardsList scrollable">
-                <CardList db={this.props.firebase} status='Doing'/>
-              </div>
-            </div>
-            <div className="column outerCardsList">
-              <h2>Done</h2>
-              <div className="column innerCardsList scrollable">
-                <CardList db={this.props.firebase} status='Done'/>
-              </div>
-            </div>
+            {columnsWithStatus}
           </div>
         </div>
       </div>

@@ -22,8 +22,6 @@ class CardDetailsForm extends Component {
   addCardDetails(e){
     e.preventDefault();
     let appl = app.database().ref('cards')
-    console.log(appl)
-    console.log(appl.child((this.props.card.key)))
 
     appl.child(this.props.card.key).update({
       title: this.state.title,
