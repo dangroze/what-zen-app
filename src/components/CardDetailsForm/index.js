@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import app from 'firebase/app';
 
-
-
 class CardDetailsForm extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +11,6 @@ class CardDetailsForm extends Component {
       status: 'todo',
       details: '' || this.props.card.details,
       comments: '' || this.props.card.comments
-
     }
   }
 
@@ -39,7 +36,6 @@ class CardDetailsForm extends Component {
       comments: this.state.comments
     });
   }
-
 
   render() {
     return (
@@ -77,7 +73,6 @@ class CardDetailsForm extends Component {
           /></div>
               <div> created by {this.props.card.user} </div>
               <div> {this.props.card.timecreated} </div>
-
             <button className="button is-small" onClick={()=>this.addCardDetails}>Save changes</button>
         </form>
       </div>

@@ -63,7 +63,6 @@ class NewCardForm extends Component {
             placeholder="Enter a new task here"
             value={this.state.title}
           />
-
           </div>
         </form>
       </div>
