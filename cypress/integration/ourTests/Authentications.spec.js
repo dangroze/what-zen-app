@@ -33,4 +33,6 @@ describe('Authentications', () => {
     cy.get('#passwordConfirmation').type(newTestUsername + '{enter}')
     cy.contains('Logged in as: ' + newTestEmail).should('exist')
   })
+
+  
 })

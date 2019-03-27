@@ -16,7 +16,7 @@ describe("newCard", () => {
     cy.get("input[name=title]").type('Test Card{enter}');
   });
 
-  it("can read the list of cards", () => {
+  it("can read a new of cards", () => {
     cy.contains('Test Card');
   });
 
@@ -27,14 +27,14 @@ describe("newCard", () => {
 
   it("can write details and comments", () => {
     cy.get("input[name=title]").type('Test Card{enter}');
-    cy.get(".field").find('button').contains('...').click()
+    cy.get(".field").find('button').contains('...').first().click()
     cy.get("textarea[name=details]").click().type('These are details test')
     cy.get("textarea[name=comments]").click().type('This are comments test')
     cy.contains('These are details test');
     cy.contains('This are comments test');
     cy.get("button[name=saveChanges]").click()
     cy.get("div[name=mainSection]").click()
-    cy.get(".field").find('button').contains('...').click()
+    cy.get(".field").find('button').contains('...').first().click()
     cy.contains('These are details test');
     cy.contains('This are comments test');
     });
