@@ -83,7 +83,7 @@ class CardList extends Component {
       if (boolean) { checked = 'checked' }
       return (
         <div><input type="checkbox" name={urgentOrImportant} className="switch is-success" checked={checked} value={card} onClick={()=>this.checkReverse(card, urgentOrImportant)}/>
-        <label for={urgentOrImportant}> {urgentOrImportant} </label></div>
+        <label htmlFor={urgentOrImportant}> {urgentOrImportant} </label></div>
       )
     }
 
