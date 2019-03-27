@@ -13,9 +13,15 @@ class About extends Component {
         <img src={zen} style={{height: '50px'}} className="App-logo" alt="logo" />
         <h2>Make wiser decisions based on the</h2>
         <Popup trigger={<button className="button is-large">Eisenhower Matrix</button>} position="bottom center">
-          <img className='decisionMatrix' src={decisionMatrix}/>
+          <img alt='' className='decisionMatrix' src={decisionMatrix}/>
         </Popup>
         <h3>as recommended by Joy Officer <a href='https://blog.makersacademy.com/how-to-make-a-decision-588d0247ace0'>Dana</a></h3>
+        <div className='container'>
+          <div className='do'></div>
+          <div className='plan'></div>
+          <div className='postpone'></div>
+          <div className='eliminate'></div>
+        </div>
       </div>
 
     );
