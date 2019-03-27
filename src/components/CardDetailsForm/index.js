@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import app from 'firebase/app';
 
-
-
 class CardDetailsForm extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +11,6 @@ class CardDetailsForm extends Component {
       status: 'todo',
       details: '' || this.props.card.details,
       comments: '' || this.props.card.comments
-
     }
   }
 
@@ -39,7 +36,6 @@ class CardDetailsForm extends Component {
       comments: this.state.comments
     });
   }
-
 
   render() {
     return (

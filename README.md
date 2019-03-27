@@ -31,6 +31,7 @@ What Zen is a production of Team What Zen -
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### `Our deployed app at` https://what-zen-app.firebaseapp.com/
 ## `Running the app locally`
 1. Install necessary files
 ```
@@ -85,3 +86,4 @@ Install (and log in to) Firebase:
 ### firebase deploy
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `Wiki link` https://github.com/what-zen/what-zen-app/wiki

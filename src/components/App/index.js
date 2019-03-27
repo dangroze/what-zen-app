@@ -3,16 +3,13 @@ import {
   Route
   } from 'react-router-dom';
 import React, { Component } from 'react';
-
 import './App.css';
-
 import Navigation from '../Navigation/index';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import HomePage from '../Home';
 import AboutPage from '../About'
-
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 import * as ROUTES from '../../constants/routes';
