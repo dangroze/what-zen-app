@@ -80,7 +80,7 @@ class CardList extends Component {
         return (
           <div className="card">
             <div className="card-content">
-              <Card card = {card.title} />
+              <Card card = {card.title}  />
               <div className="field">
               
                 { card.important === true
@@ -121,7 +121,7 @@ class CardList extends Component {
   })
     return (
       <div>
-        <div> {this.props.status} </div>
+        <div id="title"> {this.props.status} </div>
         {cardNodes}
       </div>
     )

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import app, { auth } from 'firebase/app';
-import { AuthUserContext, withAuthorization } from '../Session';
-import { withAuthentication } from '../Session';
+import app from 'firebase/app';
+
 
 class NewCardForm extends Component {
   constructor(props) {
