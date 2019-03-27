@@ -24,7 +24,7 @@ class Home extends Component {
               <div className="column">
                   <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
               </div>
-              <hr />
+              <hr/>
               <div>
                 <h3>Your board's chatting area</h3>
               </div>
