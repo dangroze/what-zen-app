@@ -44,7 +44,7 @@ class CardsCount extends Component {
         }
 
         return (
-          count
+          <span className="button is-small button is-static">{count}</span>
       )}
 }
 

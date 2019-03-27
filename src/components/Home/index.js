@@ -33,19 +33,19 @@ class Home extends Component {
               </div>
             </div>
             <div className="column outerCardsList">
-              <h2>To do (<CardsCount db={this.props.firebase} status='To do' />)</h2>
+              <h2>To do <CardsCount db={this.props.firebase} status='To do' /></h2>
               <div className="column innerCardsList scrollable">
                 <CardList db={this.props.firebase} status='To do'/>
               </div>
             </div>
             <div className="column outerCardsList">
-              <h2>In progress (<CardsCount db={this.props.firebase} status='Doing' />)</h2>
+              <h2>In progress <CardsCount db={this.props.firebase} status='Doing' /></h2>
               <div className="column innerCardsList scrollable">
                 <CardList db={this.props.firebase} status='Doing'/>
               </div>
             </div>
             <div className="column outerCardsList">
-              <h2>Done (<CardsCount db={this.props.firebase} status='Done' />)</h2>
+              <h2>Done <CardsCount db={this.props.firebase} status='Done' /></h2>
               <div className="column innerCardsList scrollable">
                 <CardList db={this.props.firebase} status='Done'/>
               </div>
