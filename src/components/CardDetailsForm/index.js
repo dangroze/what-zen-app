@@ -75,7 +75,9 @@ class CardDetailsForm extends Component {
             type="text"
             value={this.state.comments}
           /></div>
-              <div> by {this.props.user} </div>
+              <div> created by {this.props.card.user} </div>
+              <div> {this.props.card.timecreated} </div>
+
             <button className="button is-small" onClick={()=>this.addCardDetails}>Save changes</button>
         </form>
       </div>

@@ -15,7 +15,6 @@ class NewCardForm extends Component {
       user: '',
       important: false,
       urgent: false
-
     }
   }
 
@@ -26,6 +25,10 @@ class NewCardForm extends Component {
 
   addCard(e){
     e.preventDefault();
+    let fullDate = Date(Date.now());
+    fullDate = fullDate.toString();
+    let date = fullDate.split(" ");
+    date = `on ${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
 
     app.database().ref('/cards').push({
       title: this.state.title,
@@ -35,7 +38,6 @@ class NewCardForm extends Component {
       comments: '',
       important: false,
       urgent: false
-
     });
     this.setState({
       title: '',
@@ -48,10 +50,10 @@ class NewCardForm extends Component {
 
     });
   }
-
   render() {
     return (
-      <div className="NewCardForm">
+      <div id="title">
+        Create a new task
         <form action="#" onSubmit={this.addCard} >
           <div><input
             required

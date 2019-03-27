@@ -39,6 +39,7 @@ class CardList extends Component {
   }
 
   checkReverse(card, checker){
+
     let appl = app.database().ref('cards')
     if (checker === 'urgent') {
       appl.child(card.key).update({
@@ -87,10 +88,12 @@ class CardList extends Component {
     let cardNodes = this.state.cards.map((card) => {
       if (card.status === this.props.status) {
         return (
-          <div className="card">
+          <div className="card" id={card.important
+          ? (card.urgent ? "green" : "yellow" ) : (card.urgent ? "blue" : "red" )}>
             <div className="card-content">
-              <Card card = {card.title}  />
+              <Card card = {card.title} />
               <div className="field">
+
                 {checkBox('important', (card.important === true), card)}
                 {checkBox('urgent', (card.urgent === true), card)}
 
