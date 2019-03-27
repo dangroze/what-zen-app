@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
 import _ from 'lodash';
+// import GetUsername from './GetUsername'
 
 
 class Chat extends Component {
@@ -14,7 +15,8 @@ class Chat extends Component {
       user: this.props.db,
       useremail: '',
       dateCreated: '',
-      messages: []
+      messages: [],
+      username: ''
     }
 
     app.database().ref('chat').on('value', snapshot => {
@@ -23,10 +25,8 @@ class Chat extends Component {
   }
 
   getMessages(values) {
-    console.log("sherif");
-    console.log(values);
     let messages = _(values)
-    .keys()
+    .keys().reverse()
     .map(messageKey => {
       let cloned = _.clone(values[messageKey]);
       cloned.key = messageKey;
@@ -42,12 +42,19 @@ class Chat extends Component {
   }
 
   addMessage(e){
-    let mess = this.props.useremail + " said: " + this.state.message;
+
+    // this.state.username = <GetUsername userEmail={this.props.useremail} />
+    let fullDate = Date(Date.now());
+    fullDate = fullDate.toString();
+    let date = fullDate.split(" ");
+    date = `on ${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
+    let mess = this.props.useremail + " said: (" + date + ")\n\t" + this.state.message;
     e.preventDefault();
     app.database().ref('chat').push({
       message: mess,
       useremail: this.props.useremail,
-      dateCreated: Date.now()
+      dateCreated: Date.now(),
+      username: this.state.username
     });
     this.setState({
       message: '',
@@ -56,7 +63,7 @@ class Chat extends Component {
 
   render() {
     // get messages to display
-    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n");
+    let messagesToDisply = this.state.messages.map((message) => message.message).join("\n  ----  \n");
 
     return (
       <div className="Chat">
@@ -71,10 +78,9 @@ class Chat extends Component {
              name="messageList"
              type="text"
              value={messagesToDisply}
-
              />
              <br />
-          <form action="#" onSubmit={this.addMessage}>
+          <form action="#" onSubmit={this.addMessage} className="messageForm">
             <div>
               <input type='hidden' name='username' value='Sherif'/>
               <input
@@ -89,68 +95,10 @@ class Chat extends Component {
             </div>
           </form>
         </div>
-
         )}
       </AuthUserContext.Consumer>
-
-
       </div>
     );
   }
 }
-
-// export default NewCardForm;
-//
-// function Chat() {
-//
-//   // addCard(e){
-//   //    e.preventDefault();
-//   //    app.database().ref('/chats').push({
-//   //      message: this.state.message,
-//   //      user:
-//   //    });
-//   //    this.setState({
-//   //      title: '',
-//   //      status: 'To do'
-//   //    });
-//   //  }
-//
-//
-//   return(
-//     <div>
-//     <textarea
-//       className="text-area"
-//       rows="20"
-//       cols="40"
-//       name="details"
-//       // onChange={this.updateInput}
-//       type="text"
-//       // value={this.state.details}
-//       />
-//       <br />
-//         <input
-//           className="input"
-//           name="title"
-//           id="newTaskTitleField"
-//           // onChange={this.updateInput}
-//           type="text"
-//           placeholder="Enter a message to chat"
-//           // value={this.state.title}
-//         />
-//     </div>
-//   )
-// }
-
 export default Chat
-
-
-// User has: doCreateUserWithEmailAndPassword
-// index.js:32 User has: doSignInWithEmailAndPassword
-// index.js:32 User has: doSignOut
-// index.js:32 User has: doPasswordReset
-// index.js:32 User has: doPasswordUpdate
-// index.js:32 User has: user
-// index.js:32 User has: users
-// index.js:32 User has: cards
-// index.js:32 User has: auth
-// index.js:32 User has: db
