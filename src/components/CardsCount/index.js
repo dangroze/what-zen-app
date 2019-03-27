@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Popup from 'reactjs-popup';
 import app from 'firebase/app';
 import './CardsCount.css'
-
-import CardDetailsForm from '../CardDetailsForm';
-import Card from '../Card';
-
 
 class CardsCount extends Component {
 

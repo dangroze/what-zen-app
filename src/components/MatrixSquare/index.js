@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './matrixSquare.css'
-import Card from '../Card/index'
 
 class MatrixSquare extends Component {
 

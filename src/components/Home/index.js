@@ -6,13 +6,9 @@ import './Home.css';
 import plus from '../../plus.png'
 import CardList from '../CardList';
 import Chat from '../Chat'
-import CardsCount from '../CardsCount';
 import NewCardForm from '../NewCardForm';
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   render() {
     const statuses = ['To do', 'Doing', 'Done']
@@ -39,7 +35,7 @@ class Home extends Component {
               <div className="column">
                 <Popup trigger={<button id="createNewTask" className="button is-large">
                     <img id='plus' alt='add task' src={plus}/>
-                  </button>} modal position="center top">
+                  </button>} modal position="center">
                   <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
                 </Popup>
                 <hr/>
