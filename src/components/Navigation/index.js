@@ -17,12 +17,6 @@ const Navigation = () => (
 
 const NavigationAuth = () => (
   <nav className = "columns">
-  {/* <ul className="navbar-item  button is-primary has-text-light is-info">
-    What Zen
-    </ul>
-    <ul className="navbar-item  button is-primary has-text-light	">
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </ul> */}
     <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.HOME}>What Zen</Link>
     </ul>
