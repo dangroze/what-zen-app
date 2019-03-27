@@ -69,17 +69,7 @@ class Chat extends Component {
       <div className="Chat">
       <AuthUserContext.Consumer>
         {authUser => (
-        <div>
-          <textarea
-             disabled
-             className="text-area"
-             rows="20"
-             cols="40"
-             name="messageList"
-             type="text"
-             value={messagesToDisply}
-             />
-             <br />
+          <div>
           <form action="#" onSubmit={this.addMessage} className="messageForm">
             <div>
               <input type='hidden' name='username' value='Sherif'/>
@@ -94,6 +84,17 @@ class Chat extends Component {
               />
             </div>
           </form>
+          <br />
+          <textarea
+             disabled
+             className="text-area"
+             rows="20"
+             cols="40"
+             name="messageList"
+             type="text"
+             value={messagesToDisply}
+             />
+
         </div>
         )}
       </AuthUserContext.Consumer>
