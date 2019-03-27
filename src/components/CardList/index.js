@@ -88,7 +88,7 @@ class CardList extends Component {
     let cardNodes = this.state.cards.map((card) => {
       if (card.status === this.props.status) {
         return (
-          <div className="card" id={card.important 
+          <div className="card" id={card.important
           ? (card.urgent ? "green" : "yellow" ) : (card.urgent ? "blue" : "red" )}>
             <div className="card-content">
               <Card card = {card.title} />
@@ -105,8 +105,8 @@ class CardList extends Component {
                   <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
                     : null
                 }
-              <Popup trigger={<button className="button is-small">...</button>} position="left center">
-                <CardDetailsForm card = {card}/>
+              <Popup trigger={<button className="button is-small">...</button>} position="center top">
+                <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
               <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
             </div>
@@ -117,7 +117,6 @@ class CardList extends Component {
   })
     return (
       <div>
-        <div id="title"> {this.props.status} </div>
         {cardNodes}
       </div>
     )
