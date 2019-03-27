@@ -58,7 +58,7 @@ class CardList extends Component {
       }) } else {
         appl.child(card.key).update({
           status: 'Done'
-      }); 
+      });
     };
   };
 
@@ -75,6 +75,15 @@ class CardList extends Component {
   };
 
   render(){
+    const checkBox = (urgentOrImportant, boolean, card) => {
+      let checked = ''
+      if (boolean) { checked = 'checked' }
+      return (
+        <div><input type="checkbox" name={urgentOrImportant} className="switch is-success" checked={checked} value={card} onClick={()=>this.checkReverse(card, urgentOrImportant)}/>
+        <label for={urgentOrImportant}> {urgentOrImportant} </label></div>
+      )
+    }
+
     let cardNodes = this.state.cards.map((card) => {
       if (card.status === this.props.status) {
         return (
@@ -82,34 +91,18 @@ class CardList extends Component {
             <div className="card-content">
               <Card card = {card.title} />
               <div className="field">
-              
-                { card.important === true
-                  ?
-                  <div><input type="checkbox" name="important" className="switch is-success" checked="checked" value={card} onClick={()=>this.checkReverse(card, 'important')}/>
-                  <label for="important"> Important </label></div>           
-                  :
-                  <div><input type="checkbox" name="important" className="switch is-success" value={card} onClick={()=>this.checkReverse(card, 'important')}/>
-                  <label for="important"> Important </label></div>            
-                }
-                
-                { card.urgent === true
-                  ?
-                  <div><input type="checkbox" name="important" className="switch is-success" checked="checked" value={card} onClick={()=>this.checkReverse(card, 'urgent')}/>
-                  <label for="important"> Urgent </label></div>           
-                  :
-                  <div><input type="checkbox" name="important" className="switch is-success" value={card} onClick={()=>this.checkReverse(card, 'urgent')}/>
-                  <label for="important"> Urgent </label></div>            
-                }
-                
+                {checkBox('important', (card.important === true), card)}
+                {checkBox('urgent', (card.urgent === true), card)}
+
                 { ( card.status !== 'To do' ) ?
                   <button className="button is-small" value={card} onClick={()=>this.previousStage(card)}> {'<'} </button>
                     : null
-                } 
+                }
                 { ( card.status !== 'Done' ) ?
                   <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
                     : null
-                } 
-              <Popup  trigger={<button className="button is-small">...</button>} position="left center">
+                }
+              <Popup trigger={<button className="button is-small">...</button>} position="left center">
                 <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
               <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>

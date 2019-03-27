@@ -25,11 +25,6 @@ class Chat extends Component {
   }
 
   getMessages(values) {
-    let totalMsgs = 0;
-    for(let msgs in _(values.messages)) {
-      totalMsgs++
-    }
-
     let messages = _(values)
     .keys().reverse()
     .map(messageKey => {
@@ -47,6 +42,7 @@ class Chat extends Component {
   }
 
   addMessage(e){
+
     // this.state.username = <GetUsername userEmail={this.props.useremail} />
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
@@ -76,7 +72,6 @@ class Chat extends Component {
         <div>
           <textarea
              disabled
-             id="text-area"
              className="text-area"
              rows="20"
              cols="40"
@@ -106,5 +101,4 @@ class Chat extends Component {
     );
   }
 }
-
 export default Chat

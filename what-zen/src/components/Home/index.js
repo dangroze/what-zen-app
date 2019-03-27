@@ -5,7 +5,6 @@ import NewCardForm from '../NewCardForm';
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
 import Chat from '../Chat'
-import GetUsername from '../Chat'
 class Home extends Component {
   constructor(props) {
     super(props)
