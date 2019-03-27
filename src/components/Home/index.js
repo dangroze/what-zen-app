@@ -21,7 +21,7 @@ class Home extends Component {
         <div className="section">
           <div className="columns">
             <div className="column outerCardsList">
-              <h2>Add tew tasks</h2>
+              <h2>Create a new task</h2>
               <div className="column">
                 <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
                 <hr/>
