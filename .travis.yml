@@ -1,0 +1,20 @@
+# this is the working travis
+
+language: node_js
+node_js:
+  - '10'
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+install:
+  - npm ci
+  - npm install start-server-and-test
+before_install:
+  - 'npm install -g npm@6'
+before_script:
+  - npm start -- --silent &
+script:
+  - cypress run --record --key 216673cb-f8d3-45a2-82fc-637f5d92a25e
+after_success:
+  - './node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls'
