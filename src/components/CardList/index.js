@@ -102,7 +102,7 @@ class CardList extends Component {
                   <button className="button is-small" value={card} onClick={()=>this.nextStage(card)}> {'>'} </button>
                     : null
                 }
-              <Popup trigger={<button className="button is-small">...</button>} position="left center">
+              <Popup trigger={<button className="button is-small">...</button>} position="center">
                 <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
               <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
@@ -114,7 +114,6 @@ class CardList extends Component {
   })
     return (
       <div>
-        <div id="title"> {this.props.status} </div>
         {cardNodes}
       </div>
     )

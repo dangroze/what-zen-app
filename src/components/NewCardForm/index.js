@@ -12,13 +12,13 @@ class NewCardForm extends Component {
       details: '',
       status: 'todo',
       comments: '',
-      user: '', 
+      user: '',
       important: false,
-      urgent: false 
+      urgent: false
 
     }
   }
-  
+
   updateInput(e){
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
@@ -32,9 +32,9 @@ class NewCardForm extends Component {
       status: 'To do',
       user: this.props.useremail,
       details: '',
-      comments: '', 
+      comments: '',
       important: false,
-      urgent: false 
+      urgent: false
 
     });
     this.setState({
@@ -42,9 +42,9 @@ class NewCardForm extends Component {
       status: 'To do',
       user: this.props.useremail,
       details: '',
-      comments: '', 
+      comments: '',
       important: false,
-      urgent: false 
+      urgent: false
 
     });
   }
@@ -52,7 +52,6 @@ class NewCardForm extends Component {
   render() {
     return (
       <div className="NewCardForm">
-        New tasks
         <form action="#" onSubmit={this.addCard} >
           <div><input
             required

@@ -87,8 +87,9 @@ class Chat extends Component {
           <br />
           <textarea
              disabled
-             className="text-area"
-             rows="20"
+             className="textarea is-size-7"
+             font-size="15"
+             rows="18"
              cols="40"
              name="messageList"
              type="text"
