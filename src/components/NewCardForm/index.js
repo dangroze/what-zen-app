@@ -14,7 +14,8 @@ class NewCardForm extends Component {
       comments: '',
       user: '',
       important: false,
-      urgent: false
+      urgent: false,
+      timeCreated: '',
     }
   }
 
@@ -37,7 +38,8 @@ class NewCardForm extends Component {
       details: '',
       comments: '',
       important: false,
-      urgent: false
+      urgent: false,
+      timeCreated: date,
     });
     this.setState({
       title: '',
@@ -46,8 +48,8 @@ class NewCardForm extends Component {
       details: '',
       comments: '',
       important: false,
-      urgent: false
-
+      urgent: false,
+      timeCreated: date,
     });
   }
   render() {

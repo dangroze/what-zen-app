@@ -66,7 +66,7 @@ class CardDetailsForm extends Component {
             value={this.state.details}
           /></div>
           Comments
-          <div><textarea 
+          <div><textarea
             defaultValue= {this.state.comments}
             className="textarea"
             name="comments"
@@ -76,7 +76,7 @@ class CardDetailsForm extends Component {
             value={this.state.comments}
           /></div>
               <div> created by {this.props.card.user} </div>
-              <div> {this.props.card.timecreated} </div>
+              <div> {this.props.card.timeCreated} </div>
 
             <button className="button is-small" onClick={()=>this.addCardDetails}>Save changes</button>
         </form>
