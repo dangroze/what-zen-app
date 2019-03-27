@@ -11,6 +11,7 @@ import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import HomePage from '../Home';
+import AboutPage from '../About'
 
 import { AuthUserContext } from '../Session';
 import { withAuthentication } from '../Session';
@@ -29,6 +30,7 @@ class App extends Component {
               <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
               <Route path={ROUTES.SIGN_IN} component={SignInPage} />
               <Route path={ROUTES.HOME} component={HomePage}/>
+              <Route path={ROUTES.ABOUT} component={AboutPage}/>
             </div>
           </Router>
         )}
