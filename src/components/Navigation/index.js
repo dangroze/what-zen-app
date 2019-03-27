@@ -26,6 +26,9 @@ const NavigationAuth = () => (
     <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.HOME}>What Zen</Link>
     </ul>
+    <ul className="button is-small button is-info is-outlined">
+      <Link to={ROUTES.ABOUT}>About</Link>
+    </ul>
     <ul>
       <SignOutButton />
     </ul>
