@@ -52,7 +52,7 @@ class NewCardForm extends Component {
   }
   render() {
     return (
-      <div id="title">
+      <div className="NewCardForm">
         <form action="#" onSubmit={this.addCard} >
           <div><input
             required
@@ -63,7 +63,7 @@ class NewCardForm extends Component {
             placeholder="Enter a new task here"
             value={this.state.title}
           />
-          
+
           </div>
         </form>
       </div>
