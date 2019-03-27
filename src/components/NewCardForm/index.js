@@ -53,7 +53,6 @@ class NewCardForm extends Component {
   render() {
     return (
       <div id="title">
-        Create a new task
         <form action="#" onSubmit={this.addCard} >
           <div><input
             required
@@ -64,6 +63,7 @@ class NewCardForm extends Component {
             placeholder="Enter a new task here"
             value={this.state.title}
           />
+          
           </div>
         </form>
       </div>
