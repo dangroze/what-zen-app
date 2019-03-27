@@ -37,7 +37,7 @@ class CardDetailsForm extends Component {
 
   render() {
     return (
-      <div className="CardDetailsForm">
+      <div name="DetailsForm">
         <form action="#" onSubmit={this.addCardDetails}>
           Title
           <div><input
@@ -72,7 +72,7 @@ class CardDetailsForm extends Component {
               <div> created by {this.props.card.user} </div>
               <div> {this.props.card.timeCreated} </div>
 
-            <button className="button is-small" onClick={()=>this.addCardDetails}>Save changes</button>
+            <button className="button is-small" name="saveChanges" onClick={()=>this.addCardDetails}>Save changes</button>
         </form>
       </div>
     );
