@@ -1,30 +1,29 @@
-import React, { Component } from 'react';
-import app from 'firebase/app';
-
+import React, { Component } from "react";
+import app from "firebase/app";
 
 class NewCardForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.updateInput = this.updateInput.bind(this);
     this.addCard = this.addCard.bind(this);
     this.state = {
-      title: '',
-      details: '',
-      status: 'todo',
-      comments: '',
-      user: '',
+      title: "",
+      details: "",
+      status: "todo",
+      comments: "",
+      user: "",
       important: false,
       urgent: false,
-      timeCreated: '',
-    }
+      timeCreated: ""
+    };
   }
 
-  updateInput(e){
+  updateInput(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  addCard(e){
+  addCard(e) {
     e.preventDefault();
     if (!this.state.urgent && !this.state.important) {
       alert('If it\'s neither important nor urgent, consider postponing or delegating.');

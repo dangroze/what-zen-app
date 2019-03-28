@@ -1,31 +1,26 @@
-import React, { Component } from 'react';
-import { withAuthorization } from '../Session';
-import { AuthUserContext } from '../Session';
-import Popup from 'reactjs-popup';
-import './Home.css';
-import plus from '../../plus.png'
-import CardList from '../CardList';
-import Chat from '../Chat'
-import CardsCount from '../CardsCount';
-import NewCardForm from '../NewCardForm';
+import React, { Component } from "react";
+import { withAuthorization } from "../Session";
+import { AuthUserContext } from "../Session";
+import Popup from "reactjs-popup";
+import "./Home.css";
+import plus from "../../plus.png";
+import CardList from "../CardList";
+import Chat from "../Chat";
+import NewCardForm from "../NewCardForm";
 
 class Home extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
-    const statuses = ['To do', 'Doing', 'Done']
+    const statuses = ["To do", "Doing", "Done"];
     const columnsWithStatus = statuses.map(status => {
       return (
         <div className="column outerCardsList">
           <h2>{status}</h2>
           <div className="column innerCardsList scrollable">
-            <CardList db={this.props.firebase} status={status}/>
+            <CardList db={this.props.firebase} status={status} />
           </div>
         </div>
-      )
-    })
+      );
+    });
 
     return (
       <AuthUserContext.Consumer>
@@ -51,14 +46,11 @@ class Home extends Component {
                 <div className="column innerCardsList chatDiv">
                   <Chat db={this.props.firebase} useremail={authUser.email.split('@')[0]}/>
                 </div>
+                {columnsWithStatus}
               </div>
             </div>
-            {columnsWithStatus}
           </div>
-        </div>
-      </div>
-
-      )}
+        )}
       </AuthUserContext.Consumer>
     );
   }

@@ -6,7 +6,7 @@ import './Chat.css'
 
 class Chat extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.updateInput = this.updateInput.bind(this);
     this.addMessage = this.addMessage.bind(this);
     this.state = {
@@ -15,32 +15,36 @@ class Chat extends Component {
       useremail: '',
       date: '',
       messages: [],
-      username: ''
-    }
+      username: ""
+    };
 
-    app.database().ref('chat').on('value', snapshot => {
-      this.getMessages(snapshot.val());
-    });
+    app
+      .database()
+      .ref("chat")
+      .on("value", snapshot => {
+        this.getMessages(snapshot.val());
+      });
   }
 
   getMessages(values) {
     let messages = _(values)
-    .keys().reverse()
-    .map(messageKey => {
-      let cloned = _.clone(values[messageKey]);
-      cloned.key = messageKey;
-      return cloned;
-    })
-    .value();
-    this.setState({messages: messages});
+      .keys()
+      .reverse()
+      .map(messageKey => {
+        let cloned = _.clone(values[messageKey]);
+        cloned.key = messageKey;
+        return cloned;
+      })
+      .value();
+    this.setState({ messages: messages });
   }
 
-  updateInput(e){
+  updateInput(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  addMessage(e){
+  addMessage(e) {
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
@@ -93,10 +97,8 @@ class Chat extends Component {
 
     return (
       <div className="Chat">
-      <AuthUserContext.Consumer>
-        {authUser => (
-          <div>
-          <form action="#" onSubmit={this.addMessage} className="messageForm">
+        <AuthUserContext.Consumer>
+          {authUser => (
             <div>
               <input
                 required
@@ -116,8 +118,9 @@ class Chat extends Component {
         </div>
         )}
       </AuthUserContext.Consumer>
+
       </div>
     );
   }
 }
-export default Chat
+export default Chat;

@@ -4,33 +4,31 @@ import './CardDetailsForm.css'
 
 class CardDetailsForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.updateInput = this.updateInput.bind(this);
     this.addCardDetails = this.addCardDetails.bind(this);
     this.state = {
-      title: '' || this.props.card.title,
-      status: 'todo',
-      details: '' || this.props.card.details,
-      comments: '' || this.props.card.comments
-    }
+      title: "" || this.props.card.title,
+      status: "todo",
+      details: "" || this.props.card.details,
+      comments: "" || this.props.card.comments
+    };
   }
 
-  updateInput(e){
+  updateInput(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  addCardDetails(e){
+  addCardDetails(e) {
     e.preventDefault();
     this.props.close();
-
     let appl = app.database().ref('cards')
-
     appl.child(this.props.card.key).update({
       title: this.state.title,
       details: this.state.details,
       comments: this.state.comments
-    })
+    });
     this.setState({
       title: this.state.title,
       details: this.state.details,
@@ -60,15 +58,17 @@ class CardDetailsForm extends Component {
             value={this.state.title}
           /></div>
           Details
-          <div><textarea
-            defaultValue= {this.state.details}
-            className="textarea"
-            name="details"
-            placeholder="Details"
-            onChange={this.updateInput}
-            type="text"
-            value={this.state.details}
-          /></div>
+          <div>
+            <textarea
+              defaultValue={this.state.details}
+              className="textarea"
+              name="details"
+              placeholder="Details"
+              onChange={this.updateInput}
+              type="text"
+              value={this.state.details}
+            />
+          </div>
           Comments
           <div><textarea
             defaultValue= {this.state.comments}
