@@ -1,0 +1,12 @@
+.chatDisplay {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: left;
+  height: 330px;
+}
+
+.displayName {
+  font-weight: bold;
+  display: inline-block;
+}
