@@ -57,13 +57,10 @@ class Home extends Component {
           </div>
         </div>
       </div>
-
       )}
       </AuthUserContext.Consumer>
     );
   }
 }
-
 const condition = authUser => authUser != null;
-
 export default withAuthorization(condition)(Home);

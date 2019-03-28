@@ -6,7 +6,7 @@ import './Chat.css'
 
 class Chat extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.updateInput = this.updateInput.bind(this);
     this.addMessage = this.addMessage.bind(this);
     this.state = {
@@ -15,32 +15,36 @@ class Chat extends Component {
       useremail: '',
       date: '',
       messages: [],
-      username: ''
-    }
+      username: ""
+    };
 
-    app.database().ref('chat').on('value', snapshot => {
-      this.getMessages(snapshot.val());
-    });
+    app
+      .database()
+      .ref("chat")
+      .on("value", snapshot => {
+        this.getMessages(snapshot.val());
+      });
   }
 
   getMessages(values) {
     let messages = _(values)
-    .keys().reverse()
-    .map(messageKey => {
-      let cloned = _.clone(values[messageKey]);
-      cloned.key = messageKey;
-      return cloned;
-    })
-    .value();
-    this.setState({messages: messages});
+      .keys()
+      .reverse()
+      .map(messageKey => {
+        let cloned = _.clone(values[messageKey]);
+        cloned.key = messageKey;
+        return cloned;
+      })
+      .value();
+    this.setState({ messages: messages });
   }
 
-  updateInput(e){
+  updateInput(e) {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  addMessage(e){
+  addMessage(e) {
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
@@ -93,24 +97,31 @@ class Chat extends Component {
 
     return (
       <div className="Chat">
-      <AuthUserContext.Consumer>
-        {authUser => (
-          <div>
-          <form action="#" onSubmit={this.addMessage} className="messageForm">
+        <AuthUserContext.Consumer>
+          {authUser => (
             <div>
-              <input
-                required
-                className="input"
-                name="text"
-                onChange={this.updateInput}
-                type="text"
-                placeholder="Enter a new message here"
-                value={this.state.text}
-              />
-            </div>
-          </form>
+              <form
+                action="#"
+                onSubmit={this.addMessage}
+                className="messageForm"
+              >
+                <div>
+                  <input
+                    required
+                    className="input"
+                    name="text"
+                    onChange={this.updateInput}
+                    type="text"
+                    placeholder="Enter a new message here"
+                    value={this.state.text}
+                  />
+                </div>
+              </form>
           <br />
-          <div className="chatDisplay scrollable" name="messageList">
+          <div
+            className="chatDisplay scrollable"
+            name="messageList"
+          >
             {messagesToDisplay}
           </div>
         </div>
@@ -120,4 +131,4 @@ class Chat extends Component {
     );
   }
 }
-export default Chat
+export default Chat;
