@@ -64,18 +64,14 @@ class Chat extends Component {
   }
 
   colorPicker(useremail) {
-    let sumCharactersAsNumbers = 0.0
+    let sumCharactersAsNumbers = 0
     let i = useremail.length
     while (i--) {
       sumCharactersAsNumbers = sumCharactersAsNumbers + useremail.charCodeAt(i)
     }
-    const seed = (sumCharactersAsNumbers % 1000)/1000
-    let colorHex = Math.floor(seed*16777.215).toString(16);
-    if (colorHex[0] === 'F' || colorHex[2] === 'F' || colorHex[4] === 'F') {
-      // The color would be too light to see
-      colorHex = (16777215 - Math.floor(seed*16777.215)).toString(16);
-    }
-    return '#' + colorHex;
+    const seed = sumCharactersAsNumbers % 10
+    const coloursArray = ['ed4949', '363537', 'ed7d3a', '5833ff', '1c7243', '0b4f6c', 'ff3374', 'be33ff', 'ff33da', '5d1e19']
+    return '#' + coloursArray[seed];
   }
 
   render() {
