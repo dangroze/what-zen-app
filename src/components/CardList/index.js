@@ -89,9 +89,9 @@ class CardList extends Component {
 
   render() {
     const checkBox = (urgentOrImportant, boolean, card) => {
-      let checked = "";
+      let defaultChecked = "";
       if (boolean) {
-        checked = "checked";
+        defaultChecked = "defaultChecked";
       }
       return (
         <div>
@@ -99,7 +99,7 @@ class CardList extends Component {
             type="checkbox"
             name={urgentOrImportant}
             className="switch is-success"
-            checked={checked}
+            defaultChecked={defaultChecked}
             value={card}
             onClick={() => this.checkReverse(card, urgentOrImportant)}
           />
