@@ -40,7 +40,7 @@ class About extends Component {
               <h2 style={{margin: '10'}}>(When cards are red, it's time to shed.)</h2>
             </Popup>
 
-            <a href='https://blog.makersacademy.com/how-to-make-a-decision-588d0247ace0'><h2>as recommended by Joy Officer Dana</h2></a>
+            <a href='https://blog.makersacademy.com/how-to-make-a-decision-588d0247ace0'><h2>as recommended by Chief Joy Officer Dana</h2></a>
           </div>
         </div>
       </div>
