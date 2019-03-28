@@ -15,7 +15,7 @@ class Home extends Component {
   }
 
   render() {
-    const statuses = ['To do', 'Doing', 'Done']
+    const statuses = ['To do', 'In progress', 'Done']
     const columnsWithStatus = statuses.map(status => {
       return (
         <div className="column outerCardsList">

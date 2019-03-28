@@ -65,7 +65,7 @@ class CardList extends Component {
     let appl = app.database().ref("cards");
     if (card.status === "To do") {
       appl.child(card.key).update({
-        status: "Doing"
+        status: "In progress"
       });
     } else {
       appl.child(card.key).update({
@@ -78,7 +78,7 @@ class CardList extends Component {
     let appl = app.database().ref("cards");
     if (card.status === "Done") {
       appl.child(card.key).update({
-        status: "Doing"
+        status: "In progress"
       });
     } else {
       appl.child(card.key).update({
