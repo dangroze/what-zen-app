@@ -1,3 +1,7 @@
 .CardsCount {
   text-align: right;
 }
+
+.deletionPopup {
+  padding: 10px;
+}

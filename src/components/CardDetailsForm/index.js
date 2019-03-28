@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import app from 'firebase/app';
+import './CardDetailsForm.css'
 
 class CardDetailsForm extends Component {
   constructor(props) {
@@ -21,6 +22,8 @@ class CardDetailsForm extends Component {
 
   addCardDetails(e){
     e.preventDefault();
+    this.props.close();
+
     let appl = app.database().ref('cards')
 
     appl.child(this.props.card.key).update({
@@ -40,6 +43,13 @@ class CardDetailsForm extends Component {
       <div name="DetailsForm">
         <form action="#" onSubmit={this.addCardDetails}>
           Title
+          <button
+            id="corner-x"
+            className="button is-small"
+            onClick={this.props.close}
+          >
+            &times;
+          </button>
           <div><input
             required
             className="input"
@@ -72,7 +82,13 @@ class CardDetailsForm extends Component {
               <div> created by {this.props.card.user} </div>
               <div> {this.props.card.timeCreated} </div>
 
-            <button className="button is-small" name="saveChanges" onClick={()=>this.addCardDetails}>Save changes</button>
+            <button
+              className="button is-small"
+              name="saveChanges"
+              onClick={()=>this.addCardDetails}
+            >
+              Save changes
+            </button>
         </form>
       </div>
     );

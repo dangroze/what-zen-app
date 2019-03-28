@@ -3,6 +3,8 @@ describe("newCard", () => {
 
   beforeEach(() => {
     cy.login()
+    cy.visit("blank.html");
+    cy.visit("/home")
   })
 
 // Due to some issues with long-polling (used by Firebase) and using a
@@ -45,9 +47,12 @@ describe("newCard", () => {
 
   it("can delete the card", () => {
     cy.get('#plus').click()
-    cy.get("input[name=title]").type('Test Card to be deleted{enter}');
+    cy.get("input[name=urgent]").click()
+    cy.get("input[name=title]").type('Test Card to be deleted');
+    cy.get("#Create").click()
     cy.contains('Test Card to be deleted');
     cy.get(".field").find('button').contains('x').click({force: true})
+    cy.get(".YesButton").click({force: true})
     cy.get('Test Card to be deleted').should('not.exist');
   });
 

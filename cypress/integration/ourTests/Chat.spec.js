@@ -13,7 +13,7 @@ describe("Chat", () => {
 
   it("can display a new message", () => {
     const testmessage = "TDD: Test" + Date.now()
-    cy.get("input[name=message]").type(testmessage);
+    cy.get("input[name=text]").type(testmessage);
     cy.get('.messageForm').submit()
     cy.contains(testmessage);
   });

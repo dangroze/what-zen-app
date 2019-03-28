@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import app from 'firebase/app';
 import _ from 'lodash';
-// import GetUsername from './GetUsername'
+import './Chat.css'
 
 class Chat extends Component {
   constructor(props) {
@@ -10,10 +10,10 @@ class Chat extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.addMessage = this.addMessage.bind(this);
     this.state = {
-      message: '',
+      text: '',
       user: this.props.db,
       useremail: '',
-      dateCreated: '',
+      date: '',
       messages: [],
       username: ''
     }
@@ -45,22 +45,51 @@ class Chat extends Component {
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
     date = `on ${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
-    let mess = this.props.useremail + " said: (" + date + ")\n\t" + this.state.message;
+    let text = this.state.text;
     e.preventDefault();
     app.database().ref('chat').push({
-      message: mess,
+      text: text,
       useremail: this.props.useremail,
-      dateCreated: Date.now(),
-      username: this.state.username
+      date: date,
+      username: this.state.username,
+      displayColor: this.colorPicker(this.props.useremail),
     });
     this.setState({
-      message: '',
+      text: '',
     });
   }
 
+  colorPicker(useremail) {
+    let sumCharactersAsNumbers = 0.0
+    let i = useremail.length
+    while (i--) {
+      sumCharactersAsNumbers = sumCharactersAsNumbers + useremail.charCodeAt(i)
+    }
+    const seed = (sumCharactersAsNumbers % 1000)/1000
+    let colorHex = Math.floor(seed*16777.215).toString(16);
+    if (colorHex[0] === 'F' || colorHex[2] === 'F' || colorHex[4] === 'F') {
+      // The color would be too light to see
+      colorHex = (16777215 - Math.floor(seed*16777.215)).toString(16);
+    }
+    return '#' + colorHex;
+  }
+
   render() {
-    let messagesToDisply = this.state.messages.map((message) =>
-      message.message).join("\n  ----  \n");
+    let messagesToDisplay = this.state.messages.map(
+      (message) =>
+        <div>
+          <p>
+            <div
+              className="displayName"
+              style={{color: message.displayColor}}
+            >
+              {message.useremail}
+            </div> said {message.date}:<br/>
+            {message.text}
+          </p>
+          <br/>
+        </div>
+    )
 
     return (
       <div className="Chat">
@@ -69,29 +98,21 @@ class Chat extends Component {
           <div>
           <form action="#" onSubmit={this.addMessage} className="messageForm">
             <div>
-              <input type='hidden' name='username' value='Sherif'/>
               <input
                 required
                 className="input"
-                name="message"
+                name="text"
                 onChange={this.updateInput}
                 type="text"
                 placeholder="Enter a new message here"
-                value={this.state.message}
+                value={this.state.text}
               />
             </div>
           </form>
           <br />
-          <textarea
-             disabled
-             className="textarea is-size-7"
-             font-size="15"
-             rows="18"
-             cols="40"
-             name="messageList"
-             type="text"
-             value={messagesToDisply}
-             />
+          <div className="chatDisplay scrollable" name="messageList">
+            {messagesToDisplay}
+          </div>
         </div>
         )}
       </AuthUserContext.Consumer>
