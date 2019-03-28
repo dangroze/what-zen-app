@@ -34,5 +34,5 @@ describe('Authentications', () => {
     cy.contains('Logged in as: ' + newTestEmail).should('exist')
   })
 
-  
+
 })

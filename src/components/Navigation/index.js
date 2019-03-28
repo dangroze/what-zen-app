@@ -35,6 +35,9 @@ const NavigationNonAuth = () => (
     <ul className="button is-small button is-info is-outlined">
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </ul>
+    <ul className="button is-small button is-info is-outlined">
+      <Link to={ROUTES.ABOUT}>About</Link>
+    </ul>
   </nav>
 );
 

@@ -14,12 +14,11 @@ describe("newCard", () => {
     cy.visit("blank.html");
   });
 
-  it("can type into the body field", () => {
+  it("can create a new card", () => {
     cy.get('#plus').click()
-    cy.get("input[name=title]").type('Test Card{enter}');
-  });
-
-  it("can read a new of cards", () => {
+    cy.get("input[name=title]").type('Test Card');
+    cy.get("input[name=urgent]").click();
+    cy.get("#Create").click()
     cy.contains('Test Card');
   });
 
@@ -27,11 +26,16 @@ describe("newCard", () => {
     cy.get('#plus').click()
     cy.get("input[name=title]").type('Test Card{enter}');
     cy.get(".field").find('button').contains('...').click({force: true})
+    cy.get('#corner-x').click({force: true})
+    cy.get(".field").find('button').contains('x').click({force: true})
+    cy.get(".YesButton").click({force: true})
   });
 
   it("can write details and comments", () => {
     cy.get('#plus').click()
+    cy.get("input[name=urgent]").click();
     cy.get("input[name=title]").type('Test Card{enter}');
+    cy.get("#Create").click()
     cy.visit("/home")
     cy.get(".field").find('button').contains('...').first().click({force: true})
     cy.get("textarea[name=details]").click({force: true}).type('These are details test')
@@ -43,7 +47,10 @@ describe("newCard", () => {
     cy.get(".field").find('button').contains('...').first().click({force: true})
     cy.get("textarea[name=details]").contains('These are details test');
     cy.contains('This are comments test');
-    });
+    cy.visit("/home")
+    cy.get(".field").find('button').contains('x').click({force: true})
+    cy.get(".YesButton").click({force: true})
+  });
 
   it("can delete the card", () => {
     cy.get('#plus').click()
@@ -59,12 +66,16 @@ describe("newCard", () => {
   it("can check the card", () => {
     cy.get('#plus').click()
     cy.get("input[name=title]").type('Test Card to be checked{enter}');
+    cy.get("input[name=urgent]").click();
+    cy.get("#Create").click()
     cy.contains('Test Card to be checked')
     cy.get('input[name=important]').first().check({force: true}).should('be.checked')
     cy.get('input[name=urgent]').first().check({force: true}).should('be.checked')
     cy.get('input[name=important]').first().uncheck({force: true}).should('not.be.checked')
     cy.get('input[name=urgent]').first().uncheck({force: true}).should('not.be.checked')
     cy.contains('Test Card to be checked')
+    cy.get(".field").find('button').contains('x').click({force: true})
+    cy.get(".YesButton").click({force: true})
   });
 
 
