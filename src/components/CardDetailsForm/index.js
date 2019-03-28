@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import app from "firebase/app";
+import "./CardDetailsForm.css"
 
 class CardDetailsForm extends Component {
   constructor(props) {
@@ -21,7 +22,9 @@ class CardDetailsForm extends Component {
 
   addCardDetails(e) {
     e.preventDefault();
-    let appl = app.database().ref("cards");
+    this.props.close();
+
+    let appl = app.database().ref("cards")
 
     appl.child(this.props.card.key).update({
       title: this.state.title,
@@ -40,6 +43,13 @@ class CardDetailsForm extends Component {
       <div name="DetailsForm">
         <form action="#" onSubmit={this.addCardDetails}>
           Title
+          <button
+            id="corner-x"
+            className="button is-small"
+            onClick={this.props.close}
+          >
+            &times;
+          </button>
           <div>
             <input
               required

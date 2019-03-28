@@ -42,7 +42,11 @@ class CardsCount extends Component {
       }
     }
 
-    return <p className="CardsCount">{count}</p>;
+    count = count || ''
+
+    return (
+      <p className="CardsCount">{count}</p>
+    )
   }
 }
 
