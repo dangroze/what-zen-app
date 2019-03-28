@@ -32,18 +32,14 @@ class Home extends Component {
             <div className="column outerCardsList">
               <h2>Create a new task</h2>
               <div className="column">
-                <Popup trigger={
-                  <button id="createNewTask" className="button is-large">
+                <Popup trigger={<button id="createNewTask" className="button is-large">
                     <img id='plus' alt='add task' src={plus}/>
-                  </button>
-                } modal position="center top">
-                  {close =>
-                    <NewCardForm db={this.props.firebase} useremail={authUser.email} close={close}/>
-                  }
+                  </button>} modal position="center top">
+                  <NewCardForm db={this.props.firebase} useremail={authUser.email}/>
                 </Popup>
                 <hr/>
                 <h2>Your board's chatting area</h2>
-                <div className="column innerCardsList chatDiv">
+                <div className="column innerCardsList scrollable chatDiv">
                   <Chat db={this.props.firebase} useremail={authUser.email.split('@')[0]}/>
                 </div>
                 {columnsWithStatus}

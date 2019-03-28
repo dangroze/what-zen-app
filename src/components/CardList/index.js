@@ -4,8 +4,6 @@ import app from "firebase/app";
 import Popup from "reactjs-popup";
 import "./CardList.css";
 
-import YesButton from './YesButton'
-import WaitNoButton from './WaitNoButton'
 import Card from '../Card';
 import CardDetailsForm from '../CardDetailsForm';
 import CardsCount from '../CardsCount'
@@ -151,24 +149,10 @@ class CardList extends Component {
                 ) : null}
 
               <Popup trigger={<button className="button is-small">...</button>} modal position="center top">
-                {close => (
-                  <CardDetailsForm card={card} user={card.user} close={close}/>
-                )}
+                <CardDetailsForm card = {card} user ={card.user}/>
               </Popup>
-              <Popup trigger={<button
-                className="button is-small"
-                value={card}
-              >x</button>} modal position="center right">
-                {close => (
-                  <div className="deletionPopup">
-                    <h2>Are you sure you want to delete that card?</h2>
-                    <br/>
-                    <WaitNoButton close={close}/>
-                    <br/>
-                    <YesButton close={close} deleteCard={this.deleteCard} card={card}/>
-                  </div>
-                )}
-              </Popup>
+
+              <button className="button is-small" value={card} onClick={()=>this.deleteCard(card)}>x</button>
             </div>
           </div>
         );

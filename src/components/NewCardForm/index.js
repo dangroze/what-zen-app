@@ -25,80 +25,46 @@ class NewCardForm extends Component {
 
   addCard(e) {
     e.preventDefault();
-    if (!this.state.urgent && !this.state.important) {
-      alert('If it\'s neither important nor urgent, consider postponing or delegating.');
-      return null;
-    }
     let fullDate = Date(Date.now());
     fullDate = fullDate.toString();
     let date = fullDate.split(" ");
     date = `on ${date[2]}/${date[1]}/${date[3]} at ${date[4]}`
+
     app.database().ref('/cards').push({
       title: this.state.title,
       status: 'To do',
       user: this.props.useremail,
-      details: this.state.details,
+      details: '',
       comments: '',
-      important: this.state.important,
-      urgent: this.state.urgent,
+      important: false,
+      urgent: false,
       timeCreated: date,
     });
-    this.props.close()
+    this.setState({
+      title: '',
+      status: 'To do',
+      user: this.props.useremail,
+      details: '',
+      comments: '',
+      important: false,
+      urgent: false,
+      timeCreated: date,
+    });
   }
   render() {
     return (
-      <div name="NewCardForm">
-        <form action="#" onSubmit={this.addCard}>
-          Title
-          <button
-            type='button'
-            id="corner-x"
-            className="button is-small"
-            onClick={this.props.close}
-          >
-            &times;
-          </button>
-          <input
+      <div className="NewCardForm">
+        <form action="#" onSubmit={this.addCard} >
+          <div><input
             required
             className="input"
             name="title"
-            placeholder="Enter a new task here. (Unless it's not important or urgent.)"
             onChange={this.updateInput}
             type="text"
+            placeholder="Enter a new task here"
             value={this.state.title}
           />
-          <div><input
-            type="checkbox"
-            name="urgent"
-            className="switch is-success"
-            onClick={ () => {
-              this.setState({ urgent: !this.state.urgent})
-            } }/><label for="urgent"> urgent </label></div>
-          <div><input
-            type="checkbox"
-            name="important"
-            className="switch is-success"
-            onClick={ () => {
-              this.setState({ important: !this.state.important })
-            } }/><label for="urgent"> important </label></div>
-          Details
-          <textarea
-            defaultValue= {this.state.details}
-            className="textarea"
-            name="details"
-            placeholder="Details"
-            onChange={this.updateInput}
-            type="text"
-            value={this.state.details}
-          />
-          <button
-            type='button'
-            className="button is-small"
-            id="Create"
-            onClick={this.addCard}
-          >
-            Create
-          </button>
+          </div>
         </form>
       </div>
     );
