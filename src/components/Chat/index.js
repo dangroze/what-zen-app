@@ -70,7 +70,6 @@ class Chat extends Component {
       sumCharactersAsNumbers = sumCharactersAsNumbers + useremail.charCodeAt(i)
     }
     const seed = sumCharactersAsNumbers % 10
-    console.log('seed=' + seed)
     const coloursArray = ['ed4949', '363537', 'ed7d3a', '5833ff', '1c7243', '0b4f6c', 'ff3374', 'be33ff', 'ff33da', '5d1e19']
     return '#' + coloursArray[seed];
   }
