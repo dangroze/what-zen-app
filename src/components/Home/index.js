@@ -41,7 +41,6 @@ class Home extends Component {
                         </button>
                       }
                       modal
-                      position="center"
                     >
                       <NewCardForm
                         db={this.props.firebase}

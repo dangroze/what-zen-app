@@ -150,7 +150,6 @@ class CardList extends Component {
                 <Popup
                   trigger={<button className="button is-small">...</button>}
                   modal
-                  position="center top"
                 >
                   <CardDetailsForm card={card} user={card.user} />
                 </Popup>
