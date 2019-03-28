@@ -1,35 +1,31 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import Popup from 'reactjs-popup';
-import app from 'firebase/app';
-import './CardsCount.css'
-
-import CardDetailsForm from '../CardDetailsForm';
-import Card from '../Card';
-
+import React, { Component } from "react";
+import _ from "lodash";
+import app from "firebase/app";
+import "./CardsCount.css";
 
 class CardsCount extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      cards: [],
-
+      cards: []
     };
-    app.database().ref('cards').on('value', snapshot => {
-      this.getData(snapshot.val());
-    });
+    app
+      .database()
+      .ref("cards")
+      .on("value", snapshot => {
+        this.getData(snapshot.val());
+      });
   }
 
-  getData(values){
+  getData(values) {
     let cardsVal = values;
     let cards = _(cardsVal)
-      .keys().reverse()
+      .keys()
+      .reverse()
       .map(cardKey => {
         let cloned = _.clone(cardsVal[cardKey]);
         cloned.key = cardKey;
-        return cloned
-        ;
+        return cloned;
       })
       .value();
     this.setState({
@@ -40,16 +36,14 @@ class CardsCount extends Component {
   render() {
     let count = 0;
 
-    for(let index in this.state.cards) {
-      if(this.state.cards[index].status === this.props.status) {
-        count++
+    for (let index in this.state.cards) {
+      if (this.state.cards[index].status === this.props.status) {
+        count++;
       }
     }
 
-    return (
-      <p className="CardsCount">{count}</p>
-    )
+    return <p className="CardsCount">{count}</p>;
   }
 }
 
-export default CardsCount
+export default CardsCount;
