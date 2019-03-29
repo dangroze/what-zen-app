@@ -130,6 +130,7 @@ class CardList extends Component {
                 {card.status !== "To do" ? (
                   <button
                     className="button is-small"
+                    name="back"
                     value={card}
                     onClick={() => this.previousStage(card)}
                   >
@@ -139,6 +140,7 @@ class CardList extends Component {
                 {card.status !== "Done" ? (
                   <button
                     className="button is-small"
+                    name="forward"
                     value={card}
                     onClick={() => this.nextStage(card)}
                   >
@@ -147,7 +149,7 @@ class CardList extends Component {
                 ) : null}
 
               <Popup
-                trigger={<button className="button is-small"><img src={"./threelines.png"} width='20' height='20' /></button>}
+                trigger={<button className="button is-small" name="menu"><img src={"./threelines.png"} width='20' height='20' /></button>}
                 modal
               >
                 {close => (
@@ -156,7 +158,7 @@ class CardList extends Component {
               </Popup>
               <Popup
                 trigger={<button
-                  
+                  name="delete"
                   value={card}
                   padding-top='5'
                 ><img src={"./x.png"} width='20' height='20' /></button>}
