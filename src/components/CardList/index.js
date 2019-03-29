@@ -94,14 +94,15 @@ class CardList extends Component {
       }
       return (
         <div>
-          <label><input
+          <input
             type="checkbox"
             name={urgentOrImportant}
             className="switch is-success"
             checked={checked}
             value={card}
             onClick={() => this.checkReverse(card, urgentOrImportant)}
-          /> {urgentOrImportant} </label>
+          />
+          <label htmlFor={urgentOrImportant}> {urgentOrImportant} </label>
         </div>
       );
     };
@@ -129,6 +130,7 @@ class CardList extends Component {
                 {card.status !== "To do" ? (
                   <button
                     className="button is-small is-rounded"
+                    name="back"
                     value={card}
                     onClick={() => this.previousStage(card)}
                   >
@@ -138,6 +140,7 @@ class CardList extends Component {
                 {card.status !== "Done" ? (
                   <button
                     className="button is-small is-rounded"
+                    name="forward"
                     value={card}
                     onClick={() => this.nextStage(card)}
                   >
@@ -146,7 +149,7 @@ class CardList extends Component {
                 ) : null}
 
               <Popup
-                trigger={<button className="button is-small is-rounded"><img src={"./threelines.png"} width='20' height='20' /></button>}
+                trigger={<button className="button is-small is-rounded" name="menu"><img src={"./threelines.png"} width='20' height='20' /></button>}
                 modal
               >
                 {close => (
@@ -156,12 +159,13 @@ class CardList extends Component {
               <Popup
                 trigger={<button
                   className ="button is-small is-rounded"
+                  name="delete"
                   value={card}
                   margin-top="-4px"
                 ><img src={"./x.png"} width='20' height='20'/></button>}
                 modal
               >
-
+              
                 {close => (
                   <div className="deletionPopup">
                     <h2>Are you sure you want to delete that card?</h2>
