@@ -3,7 +3,6 @@ import _ from "lodash";
 import app from "firebase/app";
 import Popup from "reactjs-popup";
 import "./CardList.css";
-
 import YesButton from "./YesButton"
 import WaitNoButton from "./WaitNoButton"
 import Card from "../Card";
@@ -131,26 +130,26 @@ class CardList extends Component {
                 {card.status !== "To do" ? (
                   <button
                     className="button is-small"
+                    name="back"
                     value={card}
                     onClick={() => this.previousStage(card)}
                   >
-                    {" "}
-                    {"<"}{" "}
+                    <img src={"./ArrowLeft.png"} width='20' height='20' opacity='0.8' />
                   </button>
                 ) : null}
                 {card.status !== "Done" ? (
                   <button
                     className="button is-small"
+                    name="forward"
                     value={card}
                     onClick={() => this.nextStage(card)}
                   >
-                    {" "}
-                    {">"}{" "}
+                    <img src={"./ArrowRight.png"} width='20' height='20' />
                   </button>
                 ) : null}
 
               <Popup
-                trigger={<button className="button is-small">...</button>}
+                trigger={<button className="button is-small" name="menu"><img src={"./threelines.png"} width='20' height='20' /></button>}
                 modal
               >
                 {close => (
@@ -159,11 +158,13 @@ class CardList extends Component {
               </Popup>
               <Popup
                 trigger={<button
-                  className="button is-small"
+                  name="delete"
                   value={card}
-                >x</button>}
+                  padding-top='5'
+                ><img src={"./x.png"} width='20' height='20' /></button>}
                 modal
               >
+              
                 {close => (
                   <div className="deletionPopup">
                     <h2>Are you sure you want to delete that card?</h2>
