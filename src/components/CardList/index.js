@@ -94,15 +94,14 @@ class CardList extends Component {
       }
       return (
         <div>
-          <input
+          <label><input
             type="checkbox"
             name={urgentOrImportant}
             className="switch is-success"
             defaultChecked={defaultChecked}
             value={card}
             onClick={() => this.checkReverse(card, urgentOrImportant)}
-          />
-          <label htmlFor={urgentOrImportant}> {urgentOrImportant} </label>
+          /> {urgentOrImportant} </label>
         </div>
       );
     };
@@ -164,7 +163,7 @@ class CardList extends Component {
                 ><img src={"./x.png"} width='20' height='20' /></button>}
                 modal
               >
-              
+
                 {close => (
                   <div className="deletionPopup">
                     <h2>Are you sure you want to delete that card?</h2>

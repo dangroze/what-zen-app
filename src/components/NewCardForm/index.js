@@ -68,20 +68,20 @@ class NewCardForm extends Component {
             type="text"
             value={this.state.title}
           />
-          <div><input
-            type="checkbox"
-            name="urgent"
-            className="switch is-success"
-            onClick={ () => {
-              this.setState({ urgent: !this.state.urgent})
-            } }/><label for="urgent"> urgent </label></div>
-          <div><input
+          <div><label><input
             type="checkbox"
             name="important"
             className="switch is-success"
             onClick={ () => {
               this.setState({ important: !this.state.important })
-            } }/><label for="urgent"> important </label></div>
+            } }/> important </label></div>
+          <div><label><input
+            type="checkbox"
+            name="urgent"
+            className="switch is-success"
+            onClick={ () => {
+              this.setState({ urgent: !this.state.urgent})
+            } }/> urgent </label></div>
           Details
           <textarea
             defaultValue= {this.state.details}
