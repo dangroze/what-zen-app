@@ -88,9 +88,9 @@ class CardList extends Component {
 
   render() {
     const checkBox = (urgentOrImportant, boolean, card) => {
-      let defaultChecked = "";
+      let checked = "";
       if (boolean) {
-        defaultChecked = "defaultChecked";
+        checked = "checked";
       }
       return (
         <div>
@@ -98,7 +98,7 @@ class CardList extends Component {
             type="checkbox"
             name={urgentOrImportant}
             className="switch is-success"
-            defaultChecked={defaultChecked}
+            checked={checked}
             value={card}
             onClick={() => this.checkReverse(card, urgentOrImportant)}
           /> {urgentOrImportant} </label>
@@ -128,7 +128,7 @@ class CardList extends Component {
                 {checkBox("urgent", card.urgent === true, card)}
                 {card.status !== "To do" ? (
                   <button
-                    className="button is-small"
+                    className="button is-small is-rounded"
                     value={card}
                     onClick={() => this.previousStage(card)}
                   >
@@ -137,7 +137,7 @@ class CardList extends Component {
                 ) : null}
                 {card.status !== "Done" ? (
                   <button
-                    className="button is-small"
+                    className="button is-small is-rounded"
                     value={card}
                     onClick={() => this.nextStage(card)}
                   >
@@ -146,7 +146,7 @@ class CardList extends Component {
                 ) : null}
 
               <Popup
-                trigger={<button className="button is-small"><img src={"./threelines.png"} width='20' height='20' /></button>}
+                trigger={<button className="button is-small is-rounded"><img src={"./threelines.png"} width='20' height='20' /></button>}
                 modal
               >
                 {close => (
@@ -155,10 +155,10 @@ class CardList extends Component {
               </Popup>
               <Popup
                 trigger={<button
-
+                  className ="button is-small is-rounded"
                   value={card}
-                  padding-top='5'
-                ><img src={"./x.png"} width='20' height='20' /></button>}
+                  margin-top="-4px"
+                ><img src={"./x.png"} width='20' height='20'/></button>}
                 modal
               >
 

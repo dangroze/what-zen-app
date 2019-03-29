@@ -1,5 +1,6 @@
 body {
   padding: 10px;
+  height: 720px;
 }
 
 h2 {
@@ -17,13 +18,12 @@ h2 {
 }
 
 .outerCardsList {
-  background-color: lightgrey;
   border-radius: 6px;
   max-height: 650px;
 }
 
 .innerCardsList {
-  background-color: darkgrey;
+  background-color: rgba(149, 222, 227, 0.76)  ;
   border-radius: 6px;
   padding-top: 15px;
   max-height: 600px;
@@ -35,5 +35,5 @@ h2 {
 
 .card {
   margin: 10px;
-  box-shadow: 3px 6px #888888;
+  box-shadow: 3px 3px rgba(94, 141, 145, 0.76);
 }
